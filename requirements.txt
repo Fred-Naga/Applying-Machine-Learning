@@ -1,0 +1,13 @@
+streamlit
+pandas
+pandas-gbq
+plotly
+statsmodels
+pydeck
+google-auth
+google-cloud-bigquery==3.14.1
+sodapy
+jupyter==1.*
+pytest
+pytest-cov
+requests
