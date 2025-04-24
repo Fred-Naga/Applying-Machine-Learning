@@ -9,12 +9,13 @@ st.sidebar.header("Fred & Naga")
 
 st.markdown(
     """
-    <h1 style='text-align: center;'>Predictive Analytics</h1>
-    <h1 style='text-align: center;'>🥂 for Item-Level Gross Profits 🍾</h1>
-    <h1 style='text-align: center;'>in Iowa Liquor Stores</h1>
+    <h2 style='text-align: center;'>Predictive Analytics</h2>
+    <h2 style='text-align: center;'>🥂 for Item-Level Gross Profits 🍾</h2>
+    <h2 style='text-align: center;'>in Iowa Liquor Stores</h2>
     """,
     unsafe_allow_html=True
 )
+st.markdown("<h5 style='text-align: right;'>by Fred & Naga</h5>", unsafe_allow_html=True)
 
 st.header('🍺 Problem',divider=True)
 st.markdown('''
