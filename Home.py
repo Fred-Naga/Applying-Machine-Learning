@@ -47,7 +47,7 @@ st.markdown('''
 st.header('🍷 Data',divider=True)
 st.markdown('''<u><b>Outcome</b></u>''', unsafe_allow_html=True)
 st.markdown('''
-            - [Monthly Item-Level Gross Profit by Liquor Store](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data)
+            - `gross_profit`: [Monthly item-level gross profit by store](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Gross profit by sold liquors.
             ''',
             unsafe_allow_html=True)
 
@@ -56,7 +56,7 @@ st.markdown('''
     1. `month`: [Months](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Assumes season is one of the important factors influencing consumers' liquor preference.
     2. `s_(store type)`: [Store types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Categories of class "E" liquor selling stores such as: grocery store, liquor store/bar, gas station, pharmacy, distillery/brewery, general store, convenience store, other, or unknown.
     3. `l_(liquor type)`: [Liquor liters by types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Liters for sold liquor types, such as whiskey liqueur, Canadian whisky, and aged rum.
-    4. `c_(county)`: Since we are considering only stores in Iowa, this variable alone is used to capture geographical characteristics when creating the algorithm. However, we conduct exploratory data analysis using the following features to capture the effects of each county-level characteristic on gross profit.
+    4. `c_(county)`: Counties. Since we are considering only stores in Iowa, this variable alone is used to capture geographical characteristics when creating the algorithm. However, we conduct exploratory data analysis using the following features to capture the effects of each county-level characteristic on gross profit.
         - [Adult population age brackets by gender](https://catalog.data.gov/dataset/iowa-population-18-years-and-over-by-sex-age-and-educational-attainment-acs-5-year-estimat?): This variable includes adult age categorized into the following buckets: (18–24, 25–34, 35–44, 45–64, and 65+) at the county level, separating male and female populations.
         - [Annual income](https://data.iowa.gov/Economic-Statistics/Annual-Personal-Income-for-State-of-Iowa-by-County/st2k-2ti2/about_data): Denotes the county level average income.
         - [Fuel sales](https://data.iowa.gov/Sales-Distribution/Iowa-Motor-Fuel-Sales-by-County-and-Year/hbwp-wys3/about_data) (Used as an interaction term when store type is gas station): Total motor fuel sold during the 2024 calendar year, measured in gallons.
@@ -101,6 +101,10 @@ st.markdown('''
             - Perform Exploratory Data Analysis (EDA) to verify feature selection.
             - Project monthly item-level gross profits based on the stores' features.
             ''')
+
+st.image("picture/algorithm.png",
+         caption="Image of the algorithm",
+         use_container_width=True)
 
 st.header('🍸 Limitations',divider=True)
 st.markdown('''
