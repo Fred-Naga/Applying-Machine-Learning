@@ -13,9 +13,9 @@
 - American Sloe Gins
 - American Vodkas
 - Blended Whiskies
-- Bottled-in-Bond Bourbon
+- Bottled-in-Bond Bourbon *
 - Canadian Whiskies
-- Cocktails (Ready to Drink)
+- Cocktails (Ready to Drink) * 
 - Coffee Liqueurs
 - Corn Whiskies
 - Cream Liqueurs
@@ -23,7 +23,7 @@
 - Flavored Rum
 - Gold Rum
 - Imported Brandies
-- Imported Cordials & Liqueurs
+- Imported Cordials & Liqueurs *
 - Imported Distilled Spirits Specialty
 - Imported Dry Gins
 - Imported Flavored Vodka
@@ -33,7 +33,7 @@
 - Mezcal
 - Mixto Tequila
 - Neutral Grain Spirits
-- Neutral Grain Spirits (Flavored)
+- Neutral Grain Spirits (Flavored) *
 - Scotch Whiskies
 - Single Barrel Bourbon Whiskies
 - Single Malt Scotch
