@@ -52,7 +52,7 @@ def population_map(df, url):
 def gross_profit_map(df):
     st.pydeck_chart(
         pdk.Deck(
-            map_style="mapbox://styles/mapbox/light-v9",
+            map_style="mapbox://styles/mapbox/dark-v9",
             initial_view_state=pdk.ViewState(
                 latitude=df['latitude'].mean(),
                 longitude=df['longitude'].mean(),

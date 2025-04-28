@@ -4,7 +4,11 @@ import pandas as pd
 import plotly.express as px
 import json
 
-st.title('Random Forest')
+st.set_page_config(page_title="Random Forest", page_icon="🍺")
+st.header('🍺 Algorithm: Random Forest',divider=True)
+st.markdown('''
+            ...
+            ''')
 
 st.header('🍻 Training (70%) & Validation (15%)',divider=True)
 

@@ -36,7 +36,7 @@ def income_histogram_plot(df, bins=30):
         df,
         x="annual_income",
         nbins=bins,
-        title="Income Distribution Across Counties",
+        title="",
         labels={"annual_income": "Annual Income", "count": "Number of Counties"}
     )
     fig.update_layout(height=400)
@@ -52,7 +52,7 @@ def plot_price_range_histogram(df):
         color="price_range",
         category_orders={"price_range": ["cheap", "medium", "expensive"]},
         labels={"price_range": "Price Category", "count": "Number of Items"},
-        title="Liquor Inventory by Price Range"
+        title=""
     )
     fig.update_layout(showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
