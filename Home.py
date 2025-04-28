@@ -53,14 +53,20 @@ st.markdown('''
 
 st.markdown('''<u><b>Features</b></u>''', unsafe_allow_html=True)
 st.markdown('''
-    1. [Month](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data): Assumes season is one of the important factors influencing consumers' liquor preference.
-    2. [Store Types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data): Categories of class "E" liquor selling stores such as: grocery store, liquor store/bar, gas station, pharmacy, distillery/brewery, general store, convenience store, other, or unknown.
-    3. [Liquor Liters by Items/Types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data): Liters for more detailed liquor items than general liquor types, or for broader liquor types such as whiskey liqueur, Canadian whisky, and aged rum. Tried both approaches.
-    4. [Adult Population Age Brackets by Gender](https://catalog.data.gov/dataset/iowa-population-18-years-and-over-by-sex-age-and-educational-attainment-acs-5-year-estimat?): This variable includes adult age categorized into the following buckets: (18–24, 25–34, 35–44, 45–64, and 65+) at the county level, separating male and female populations.
-    5. [Annual Income by County](https://data.iowa.gov/Economic-Statistics/Annual-Personal-Income-for-State-of-Iowa-by-County/st2k-2ti2/about_data): Denotes the county level average income.
-    6. [Fuel Sales by County](https://data.iowa.gov/Sales-Distribution/Iowa-Motor-Fuel-Sales-by-County-and-Year/hbwp-wys3/about_data) (Used as an interaction term when store type is gas station): Total motor fuel sold during the 2024 calendar year, measured in gallons.
-    7. [Excessive Drinking Percentage by County](https://www.countyhealthrankings.org/health-data/community-conditions/health-infrastructure/health-promotion-and-harm-reduction/excessive-drinking?state=19&tab=1&year=2025): Percentage of adults reporting binge or heavy drinking in the past 30 days. 
+    1. `month`: [Months](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Assumes season is one of the important factors influencing consumers' liquor preference.
+    2. `s_(store type)`: [Store types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Categories of class "E" liquor selling stores such as: grocery store, liquor store/bar, gas station, pharmacy, distillery/brewery, general store, convenience store, other, or unknown.
+    3. `l_(liquor type)`: [Liquor liters by types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Liters for sold liquor types, such as whiskey liqueur, Canadian whisky, and aged rum.
+    4. `c_(county)`: Since we are considering only stores in Iowa, this variable alone is used to capture geographical characteristics when creating the algorithm. However, we conduct exploratory data analysis using the following features to capture the effects of each county-level characteristic on gross profit.
+        - [Adult population age brackets by gender](https://catalog.data.gov/dataset/iowa-population-18-years-and-over-by-sex-age-and-educational-attainment-acs-5-year-estimat?): This variable includes adult age categorized into the following buckets: (18–24, 25–34, 35–44, 45–64, and 65+) at the county level, separating male and female populations.
+        - [Annual income](https://data.iowa.gov/Economic-Statistics/Annual-Personal-Income-for-State-of-Iowa-by-County/st2k-2ti2/about_data): Denotes the county level average income.
+        - [Fuel sales](https://data.iowa.gov/Sales-Distribution/Iowa-Motor-Fuel-Sales-by-County-and-Year/hbwp-wys3/about_data) (Used as an interaction term when store type is gas station): Total motor fuel sold during the 2024 calendar year, measured in gallons.
+        - [Excessive drinking percentage](https://www.countyhealthrankings.org/health-data/community-conditions/health-infrastructure/health-promotion-and-harm-reduction/excessive-drinking?state=19&tab=1&year=2025): Percentage of adults reporting binge or heavy drinking in the past 30 days. 
     ''')
+# [Liquor Liters by Items/Types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data): Liters for more detailed liquor items than general liquor types, or for broader liquor types such as whiskey liqueur, Canadian whisky, and aged rum. Tried both approaches.
+# [Adult Population Age Brackets by Gender](https://catalog.data.gov/dataset/iowa-population-18-years-and-over-by-sex-age-and-educational-attainment-acs-5-year-estimat?): This variable includes adult age categorized into the following buckets: (18–24, 25–34, 35–44, 45–64, and 65+) at the county level, separating male and female populations.
+# [Annual Income by County](https://data.iowa.gov/Economic-Statistics/Annual-Personal-Income-for-State-of-Iowa-by-County/st2k-2ti2/about_data): Denotes the county level average income.
+# [Fuel Sales by County](https://data.iowa.gov/Sales-Distribution/Iowa-Motor-Fuel-Sales-by-County-and-Year/hbwp-wys3/about_data) (Used as an interaction term when store type is gas station): Total motor fuel sold during the 2024 calendar year, measured in gallons.
+# [Excessive Drinking Percentage by County](https://www.countyhealthrankings.org/health-data/community-conditions/health-infrastructure/health-promotion-and-harm-reduction/excessive-drinking?state=19&tab=1&year=2025): Percentage of adults reporting binge or heavy drinking in the past 30 days. 
 st.markdown('''<u><b>Data Source</b></u>''',unsafe_allow_html=True)
 st.markdown('''
     - **Liquor Sales of Iowa Open Data:** Contains transaciton level records of stores licensed to sell liquor to be consumed off-premise. It includes product details, store name/location, quantities sold, and sale prices.
@@ -101,7 +107,7 @@ st.markdown('''
             - **Observational data only:** We cannot infer causal relationships, this model is predictive.
             - **Limited external validity:** A model trained on Iowa may not generalize to other states, especially non-Midwestern ones.
             - **Complex interpretation:** Using many features makes it hard to pinpoint individual drivers, particularly after regularization.
-            - **Scope of sales data:** We only have liquor transaction data—no beer, wine, or cider.
+            - **Scope of sales data:** We only have liquor transaction, not inventory data. Additionally, they do not include beer, wine, or cider.
             - **Missing ancillary purchases:** There’s no data on complementary food or non‑liquor drinks, which could affect item‑level profit.
             ''')
 
