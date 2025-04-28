@@ -1,0 +1,95 @@
+1. In which county are you planning to open a liquor store in Iowa?
+2. For which month would you like to project the item-level gross profit?
+3. What type of store are you planning to open?
+4. How many liters of each of the following liquor types will you stock?
+- 100 Agave Tequila
+- Aged Dark Rum
+- American Brandies
+- American Cordials & Liqueurs
+- American Distilled Spirits Specialty
+- American Dry Gins
+- American Flavored Vodka
+- American Schnapps
+- American Sloe Gins
+- American Vodkas
+- Blended Whiskies
+- Bottled-in-Bond Bourbon
+- Canadian Whiskies
+- Cocktails (Ready to Drink)
+- Coffee Liqueurs
+- Corn Whiskies
+- Cream Liqueurs
+- Flavored Gin
+- Flavored Rum
+- Gold Rum
+- Imported Brandies
+- Imported Cordials & Liqueurs
+- Imported Distilled Spirits Specialty
+- Imported Dry Gins
+- Imported Flavored Vodka
+- Imported Schnapps
+- Imported Vodkas
+- Irish Whiskies
+- Mezcal
+- Mixto Tequila
+- Neutral Grain Spirits
+- Neutral Grain Spirits (Flavored)
+- Scotch Whiskies
+- Single Barrel Bourbon Whiskies
+- Single Malt Scotch
+- Special Order Items
+- Spiced Rum
+- Straight Bourbon Whiskies
+- Straight Rye Whiskies
+- Temporary Specialty Packages
+- Tennessee Whiskies
+- Triple Sec
+- Whiskey Liqueur
+- White Rum
+
+###################################
+
+- 100_agave_tequila
+- aged_dark_rum
+- american_brandies
+- american_cordials_liqueurs
+- american_distilled_spirits_specialty
+- american_dry_gins
+- american_flavored_vodka
+- american_schnapps
+- american_sloe_gins
+- american_vodkas
+- blended_whiskies
+- bottled_in_bond_bourbon
+- canadian_whiskies
+- cocktails_rtd
+- coffee_liqueurs
+- corn_whiskies
+- cream_liqueurs
+- flavored_gin
+- flavored_rum
+- gold_rum
+- imported_brandies
+- imported_cordials_liqueurs
+- imported_distilled_spirits_specialty
+- imported_dry_gins
+- imported_flavored_vodka
+- imported_schnapps
+- imported_vodkas
+- irish_whiskies
+- mezcal
+- mixto_tequila
+- neutral_grain_spirits
+- neutral_grain_spirits_flavored
+- scotch_whiskies
+- single_barrel_bourbon_whiskies
+- single_malt_scotch
+- special_order_items
+- spiced_rum
+- straight_bourbon_whiskies
+- straight_rye_whiskies
+- temporary_specialty_packages
+- tennessee_whiskies
+- triple_sec
+- whiskey_liqueur
+- white_rum
