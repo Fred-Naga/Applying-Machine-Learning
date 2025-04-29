@@ -1,11 +1,13 @@
 import streamlit as st
+from pkg.load_data import random_forest
 import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
 
 st.set_page_config(page_title="Demonstration", page_icon="🥂")
 st.header('🥂 Demonstration',divider=True)
+
+# # google cloud
+# table='solid-dominion-452916-p4.aml_fl_tn.iowa_algorithm'
+# df = connect_to_iowa_algorithm(table)
 
 # month
 months = [ "January", "February", "March", "April", "May", "June",
@@ -77,19 +79,19 @@ col1, col2, col3 = st.columns(3)
 with col1:
     liquor_stock_1 = {}
     for liquor in liquor_types_1:
-        liters = st.number_input(liquor, min_value=0.0, step=0.1)
+        liters = st.number_input(liquor, min_value=0.0, step=0.1, value=1.0)
         liquor_stock_1[liquor] = liters
 
 with col2:
     liquor_stock_2 = {}
     for liquor in liquor_types_2:
-        liters = st.number_input(liquor, min_value=0.0, step=0.1)
+        liters = st.number_input(liquor, min_value=0.0, step=0.1, value=1.0)
         liquor_stock_2[liquor] = liters
 
 with col3:
     liquor_stock_3 = {}
     for liquor in liquor_types_3:
-        liters = st.number_input(liquor, min_value=0.0, step=0.1)
+        liters = st.number_input(liquor, min_value=0.0, step=0.1, value=1.0)
         liquor_stock_3[liquor] = liters
 
 # Submission
@@ -238,18 +240,14 @@ if st.button("Submit"):
         **county_variables,
         **liquor_variables
     }
-    X_sample = pd.DataFrame([full_features])
-    X_long = pd.melt(X_sample, var_name='feat', value_name='value')
+    X = pd.DataFrame([full_features])
+    X_long = pd.melt(X, var_name='feat', value_name='value')
     
     # random forest model
-    df = pd.read_csv('data/iowa_algorithm.csv')
-    X = df.drop(columns=['store', 'city', 'liter', 'gross_profit'])
-    y = df['gross_profit']
-    X_train_val, X_test, y_train_val, y_test = train_test_split(X, y, test_size=0.15, random_state=123)
-    X_train, X_val, y_train, y_val = train_test_split(X_train_val, y_train_val, test_size=0.176, random_state=123)
-    forest_test = RandomForestRegressor(n_estimators=100, max_depth=15, random_state=100)
-    forest_test.fit(X_train, y_train)
-    prediction = forest_test.predict(X_sample)
+    bucket_name = "random_forest_model_naga"
+    blob_name = "forest_model.pkl"
+    forest_model = random_forest(bucket_name, blob_name)
+    prediction = forest_model.predict(X)
 
     col1, col2 = st.columns(2)
     with col1:
@@ -257,8 +255,5 @@ if st.button("Submit"):
         X_long
        
     with col2:        
-        # st.write("Month:", selected_month)
-        # st.write("Store Type:", selected_store_type)
-        # st.write("County:", selected_county)
         st.write("Predicted Gross Profit:")
         st.write(f"${prediction[0]:,.2f}")
