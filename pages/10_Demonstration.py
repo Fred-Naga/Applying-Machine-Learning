@@ -5,9 +5,13 @@ import pandas as pd
 st.set_page_config(page_title="Demonstration", page_icon="🥂")
 st.header('🥂 Demonstration for Decision Makers',divider=True)
 
-# # google cloud
-# table='solid-dominion-452916-p4.aml_fl_tn.iowa_algorithm'
-# df = connect_to_iowa_algorithm(table)
+st.markdown('''
+            - This is a demonstration of the prediction model for decision makers.
+            - The model predicts the gross profit of a store selling liquors in Iowa. 
+            - The mean and max liters of liquor types by store in each county can be 
+            referred from [this link](https://github.com/Fred-Naga/Applying-Machine-Learning/blob/main/table/liters_by_store.csv).
+            ''')
+st.divider()
 
 # month
 months = [ "January", "February", "March", "April", "May", "June",
@@ -93,6 +97,8 @@ with col3:
     for liquor in liquor_types_3:
         liters = st.number_input(liquor, min_value=0.0, step=0.1, value=1.0)
         liquor_stock_3[liquor] = liters
+
+st.divider()
 
 # Submission
 if st.button("Submit"):
