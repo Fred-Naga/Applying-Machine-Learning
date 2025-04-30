@@ -6,11 +6,15 @@ st.set_page_config(page_title="Demonstration", page_icon="🥂")
 st.header('🥂 Demonstration for Decision Makers',divider=True)
 
 st.markdown('''
-            - This is a demonstration of the prediction model for decision makers.
+            - This is a demonstration of the prediction model (algorithm) that we created 
+            for decision makers.
             - The model predicts the gross profit of a store selling liquors in Iowa. 
-            - The mean and max liters of liquor types by store in each county can be 
-            referred from [this link](https://github.com/Fred-Naga/Applying-Machine-Learning/blob/main/table/liters_by_store.csv).
-            - The results can be used to make informed decisions about the store's liquor inventory.
+            - [You can refer to the mean and maximum liters of each liquor type by store 
+            and county here.](https://github.com/Fred-Naga/Applying-Machine-Learning/blob/main/table/liters_by_store.csv)
+            To improve the accuracy of predictions, it is recommended not to exceed the 
+            maximum liter values for each liquor type in the selected county.
+            - The results can be used to make informed decisions about the store's liquor 
+            inventory or to evaluate potential alcohol-related tax revenues.
             ''')
 st.divider()
 
@@ -260,10 +264,32 @@ if st.button("Submit"):
     with col1:
         st.write("Input Features:")
         X_long
-       
-    with col2:        
-        st.write("Predicted Gross Profit:")        
-        if sum(liquor_variables.values())<0.5:
-            st.write("$0.00")
+    
+    with col2:
+        st.subheader("💰 Predicted Gross Profit")
+
+        if sum(liquor_variables.values()) < 0.5:
+            profit_display = "$0.00 / month"
         else:
-            st.write(f"${prediction[0]:,.2f}")
+            profit_display = f"${prediction[0]:,.2f} / month"
+
+        st.markdown(
+            f"""
+            <div style='
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 2px solid #ccc;
+                border-radius: 10px;
+                padding: 20px;
+                background-color: #f9f9f9;
+                font-size: 2rem;
+                font-weight: bold;
+                color: #2E8B57;
+                text-align: center;
+            '>
+                {profit_display}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
