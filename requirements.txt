@@ -6,16 +6,12 @@ statsmodels
 pydeck
 google-auth
 google-cloud-bigquery==3.14.1
+google-cloud-storage
 sodapy
 jupyter==1.*
 pytest
 pytest-cov
 requests
 numpy
-random
 scikit-learn
 scipy
-joblib
-google-cloud-storage
-tempfile
-google-cloud-storage
