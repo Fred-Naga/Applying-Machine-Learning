@@ -10,6 +10,7 @@ st.markdown('''
             - The model predicts the gross profit of a store selling liquors in Iowa. 
             - The mean and max liters of liquor types by store in each county can be 
             referred from [this link](https://github.com/Fred-Naga/Applying-Machine-Learning/blob/main/table/liters_by_store.csv).
+            - The results can be used to make informed decisions about the store's liquor inventory.
             ''')
 st.divider()
 
@@ -83,19 +84,19 @@ col1, col2, col3 = st.columns(3)
 with col1:
     liquor_stock_1 = {}
     for liquor in liquor_types_1:
-        liters = st.number_input(liquor, min_value=0.0, step=0.1, value=1.0)
+        liters = st.number_input(liquor, min_value=0.0, step=0.1, value=0.1)
         liquor_stock_1[liquor] = liters
 
 with col2:
     liquor_stock_2 = {}
     for liquor in liquor_types_2:
-        liters = st.number_input(liquor, min_value=0.0, step=0.1, value=1.0)
+        liters = st.number_input(liquor, min_value=0.0, step=0.1, value=0.1)
         liquor_stock_2[liquor] = liters
 
 with col3:
     liquor_stock_3 = {}
     for liquor in liquor_types_3:
-        liters = st.number_input(liquor, min_value=0.0, step=0.1, value=1.0)
+        liters = st.number_input(liquor, min_value=0.0, step=0.1, value=0.1)
         liquor_stock_3[liquor] = liters
 
 st.divider()
@@ -261,5 +262,8 @@ if st.button("Submit"):
         X_long
        
     with col2:        
-        st.write("Predicted Gross Profit:")
-        st.write(f"${prediction[0]:,.2f}")
+        st.write("Predicted Gross Profit:")        
+        if sum(liquor_variables.values())<0.5:
+            st.write("$0.00")
+        else:
+            st.write(f"${prediction[0]:,.2f}")
