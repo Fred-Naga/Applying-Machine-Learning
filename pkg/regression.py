@@ -1,25 +1,5 @@
 import numpy as np
-import csv
 import random
-import pandas as pd
-
-# def load_data(file):
-#     X_raw = []
-#     y = []
-
-#     with open(file, 'rt', encoding='utf8') as f:
-#         dict_reader = csv.DictReader(f)
-
-#         for observation in dict_reader:
-#             y.append(observation['gross_profit'])
-#             observation.pop('gross_profit', None)
-
-#             for key in ['store', 'longitude', 'latitude', 'city', 'county', 'liter', 'bottles', 'pop_city', 'fips', 'pop_county']:
-#                 observation.pop(key, None)
-
-#             X_raw.append(observation)
-
-#     return X_raw, y
 
 def convert_X_raw_to_array(X_raw):
     feature_keys = list(X_raw[0].keys())
