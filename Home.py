@@ -26,7 +26,7 @@ st.markdown('''
             develop an algorithm to project item-level gross profits in liquor stores, using Iowa 
             liquor sales data.          
 
-            <u><b>Research Question</b></u>
+            <u><b>Research Questions</b></u>
             - How can we leverage demographic, economic, and liquor sales data to develop a 
             predictive algorithm that helps liquor store owners identify optimal store locations and 
             product assortments?
@@ -50,7 +50,6 @@ st.markdown('''
             - `gross_profit`: [Monthly item-level gross profit by store](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Gross profit by sold liquors.
             ''',
             unsafe_allow_html=True)
-
 st.markdown('''<u><b>Features</b></u>''', unsafe_allow_html=True)
 st.markdown('''
     1. `month`: [Months](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Assumes season is one of the important factors influencing consumers' liquor preference.
@@ -62,11 +61,6 @@ st.markdown('''
         - [Fuel sales](https://data.iowa.gov/Sales-Distribution/Iowa-Motor-Fuel-Sales-by-County-and-Year/hbwp-wys3/about_data) (Used as an interaction term when store type is gas station): Total motor fuel sold during the 2024 calendar year, measured in gallons.
         - [Excessive drinking percentage](https://www.countyhealthrankings.org/health-data/community-conditions/health-infrastructure/health-promotion-and-harm-reduction/excessive-drinking?state=19&tab=1&year=2025): Percentage of adults reporting binge or heavy drinking in the past 30 days. 
     ''')
-# [Liquor Liters by Items/Types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data): Liters for more detailed liquor items than general liquor types, or for broader liquor types such as whiskey liqueur, Canadian whisky, and aged rum. Tried both approaches.
-# [Adult Population Age Brackets by Gender](https://catalog.data.gov/dataset/iowa-population-18-years-and-over-by-sex-age-and-educational-attainment-acs-5-year-estimat?): This variable includes adult age categorized into the following buckets: (18–24, 25–34, 35–44, 45–64, and 65+) at the county level, separating male and female populations.
-# [Annual Income by County](https://data.iowa.gov/Economic-Statistics/Annual-Personal-Income-for-State-of-Iowa-by-County/st2k-2ti2/about_data): Denotes the county level average income.
-# [Fuel Sales by County](https://data.iowa.gov/Sales-Distribution/Iowa-Motor-Fuel-Sales-by-County-and-Year/hbwp-wys3/about_data) (Used as an interaction term when store type is gas station): Total motor fuel sold during the 2024 calendar year, measured in gallons.
-# [Excessive Drinking Percentage by County](https://www.countyhealthrankings.org/health-data/community-conditions/health-infrastructure/health-promotion-and-harm-reduction/excessive-drinking?state=19&tab=1&year=2025): Percentage of adults reporting binge or heavy drinking in the past 30 days. 
 st.markdown('''<u><b>Data Source</b></u>''',unsafe_allow_html=True)
 st.markdown('''
     - **Liquor Sales of Iowa Open Data:** Contains transaciton level records of stores licensed to sell liquor to be consumed off-premise. It includes product details, store name/location, quantities sold, and sale prices.
@@ -97,22 +91,41 @@ with col4:
 
 st.header('🍶 Strategy',divider=True)
 st.markdown('''
-            - Create random forests using training, validation, and testing data.
-            - Perform Exploratory Data Analysis (EDA) to verify feature selection.
-            - Project monthly item-level gross profits based on the stores' features.
+            - Create two algorithms and compare them with each other: the ridge regression 
+            model and random forest model. 
+            - In both models, 70%, 15% and 15% of data are used as training, validation, 
+            and testing data, respectively.
+            - Perform Exploratory Data Analysis (EDA) for all the features to verify 
+            their effects on monthly gross profit.
+            - Project monthly item-level gross profits based on 2024 liquor transactions 
+            by store in Iowa.
             ''')
-
+col1, col2, col3 = st.columns(3)
+with col1:
+    if st.button("Algorithm: Ridge Regression"):
+        st.switch_page("pages/8_Algorithm:_Ridge_Regression.py")
+with col2:
+    if st.button("Algorithm: Random Forest"):
+        st.switch_page("pages/9_Algorithm:_Random_Forest.py")
+with col3:
+    if st.button("Demonstration for Decision Makers"):
+        st.switch_page("pages/10_Demonstration_for Decision_Makers.py")
 st.image("picture/algorithm.png",
          caption="Image of the algorithm",
          use_container_width=True)
 
 st.header('🍸 Limitations',divider=True)
 st.markdown('''
-            - **Observational data only:** We cannot infer causal relationships, this model is predictive.
-            - **Limited external validity:** A model trained on Iowa may not generalize to other states, especially non-Midwestern ones.
-            - **Complex interpretation:** Using many features makes it hard to pinpoint individual drivers, particularly after regularization.
-            - **Scope of sales data:** We only have liquor transaction, not inventory data. Additionally, they do not include beer, wine, or cider.
-            - **Missing ancillary purchases:** There’s no data on complementary food or non‑liquor drinks, which could affect item‑level profit.
+            - **Observational data only:** We cannot infer causal relationships as this 
+            model is only predictive.
+            - **Limited external validity:** A model trained on Iowa may not generalize 
+            to other states, especially non-Midwestern ones.
+            - **Complex interpretation:** Using many features makes it hard to pinpoint 
+            individual drivers, particularly after regularization.
+            - **Scope of sales data:** We only have liquor transaction, not inventory data. 
+            Additionally, they do not include beer, wine, or cider.
+            - **Missing ancillary purchases:** There’s no data on complementary food or 
+            non‑liquor drinks, which could affect gross profit.
             ''')
 
 # st.header('🍹 Next Steps',divider=True)

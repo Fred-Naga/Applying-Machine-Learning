@@ -7,7 +7,10 @@ import json
 st.set_page_config(page_title="Ridge Regression", page_icon="🍶")
 st.header('🍶 Algorithm: Ridge Regression',divider=True)
 st.markdown('''
-            ...(Overview)
+            We built a Ridge Regression model to project monthly gross profit for each 
+            store. 70% of the data was used for training, and 15% for validation. During 
+            validation, we obtained an RMSE of 8,395.12 when λ = 10.99, so we adopted 
+            λ = 11 for our final model and applied it to the testing data.
             ''')
 
 tab1, tab2 = st.tabs(["Training (70%) & Validation (15%)", "Testing (15%)"])
@@ -16,9 +19,12 @@ tab1, tab2 = st.tabs(["Training (70%) & Validation (15%)", "Testing (15%)"])
 
 with tab1:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - The RMSE decreases as lambda increases up to a point, but the 
+                improvement is marginal.
+                - After log(λ) = 1.5, the RMSE starts to increase sharply, suggesting 
+                over-regularization.
+                - The optimal λ balances the trade-off between model complexity and 
+                prediction error.
                 """)
     
     st.subheader("RMSE vs Lambda")
@@ -44,10 +50,15 @@ with tab1:
 
 with tab2:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - The model struggles to accurately predict stores with very high or very 
+                low gross profits.
+                - An RMSE of 8,294.92 indicates relatively poor accuracy ginven an average 
+                actual profit of $6,463.
+                - The Ridge model may not generalize well to unseen data, and alternative 
+                models should be explored.
                 """)
+    if st.button("Algorithm: Random Forest"):
+        st.switch_page("pages/9_Algorithm:_Random_Forest.py")
 
     st.subheader("Actual vs Projected Monthly Gross Profit")
 
