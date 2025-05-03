@@ -21,7 +21,7 @@ with col1:
                 - GitHub username: [NGSWTKK](https://github.com/NGSWTKK)
                 - Hometown: Yamanashi, Japan
                 - Education: 
-                    - School of International Public Affairs | Columbia University (2023-2025)
+                    - School of International and Public Affairs | Columbia University (2023-2025)
                     - Hokkaido University (2011-2017)
                 ''')
 
@@ -30,7 +30,7 @@ with col2:
     """
     <div style='text-align: center;'>
         <a href='' target='_blank' style='text-decoration: none; font-size: 18px;'>
-            Fred Lee (link to linkedin)
+            [Fred Lee](https://www.linkedin.com/in/frederick-t-lee/)
         </a>
     </div>
     """,
@@ -38,9 +38,9 @@ with col2:
     )
     st.markdown('''
                 - Pronouns: he/him
-                - GitHub username: 
+                - GitHub username: [Ftl2110](https://github.com/Ftl2110)
                 - Hometown: New Jersey, USA
                 - Education: 
-                    - School of International Public Affairs | Columbia University (2023-2025)
+                    - School of International and Public Affairs | Columbia University (2023-2025)
                     - college (if you want to add)
                 ''')
