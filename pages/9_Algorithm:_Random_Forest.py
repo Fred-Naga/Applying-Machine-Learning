@@ -7,7 +7,12 @@ import json
 st.set_page_config(page_title="Random Forest", page_icon="🍺")
 st.header('🍺 Algorithm: Random Forest',divider=True)
 st.markdown('''
-            ...(Overview)
+            We built four Random Forest models, each with a different number of trees and varying 
+            tree depths, to examine how these hyperparameters affect prediction accuracy. Like the 
+            Ridge Regression model, 70% of the data was used for training and 15% for validation. 
+            The best performance was achieved with 100 trees and a maximum tree depth of 15, yielding 
+            a validation RMSE of 4,672.04. We selected this configuration for our final model and 
+            evaluated its performance on the test set.
             ''')
 
 tab1, tab2 = st.tabs(["Training (70%) & Validation (15%)", "Testing (15%)"])
@@ -16,9 +21,11 @@ tab1, tab2 = st.tabs(["Training (70%) & Validation (15%)", "Testing (15%)"])
 
 with tab1:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - As tree depth increases, the RMSE initially decreases, but it starts rising again 
+                after depth 15.  
+                - This suggests that the model begins to overfit when the tree depth exceeds 15.
+                - A depth of 15 balances model complexity and generalization performance, achieving 
+                the lowest RMSE in validation.
                 """)
     
     st.subheader("RMSE vs Tree Depth")
@@ -46,10 +53,17 @@ with tab1:
 
 with tab2:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - The model demonstrates strong predictive performance, with projected values closely 
+                matching actual values for most stores.
+                - An RMSE of 4,672.04 is approximately 55% lower than that of the Ridge Regression 
+                model (8,395.12), indicating significantly improved accuracy.
+                - This level of precision makes the model suitable for real-world applications, 
+                such as supporting decision makers in inventory planning or revenue forecasting.
+                - We applied this model in a demonstration to illustrate its potential for predicting 
+                monthly item-level gross profit by store.
                 """)
+    if st.button("Demonstration for Decision Makers"):
+        st.switch_page("pages/10_Demonstration_for Decision_Makers.py")
 
     st.subheader("Actual vs Projected Monthly Gross Profit")
 
