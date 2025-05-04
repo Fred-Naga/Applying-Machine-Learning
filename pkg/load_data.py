@@ -173,3 +173,20 @@ def random_forest(bucket_name, blob_name):
     model = joblib.load(tmp_file_path)
 
     return model
+
+@st.cache_resource
+def connect_to_month(table, month):
+    creds = st.secrets["gcp_service_account"]
+    credentials = service_account.Credentials.from_service_account_info(creds)
+
+    sql = f"""
+    SELECT latitude, 
+           longitude,
+           city,
+           county,
+           gross_profit
+    FROM `{table}`
+    WHERE month={month}
+    """
+
+    return pandas_gbq.read_gbq(sql, credentials=credentials)

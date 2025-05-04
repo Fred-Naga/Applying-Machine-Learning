@@ -29,8 +29,8 @@ with col2:
     st.markdown(
     """
     <div style='text-align: center;'>
-        <a href='' target='_blank' style='text-decoration: none; font-size: 18px;'>
-            [Fred Lee](https://www.linkedin.com/in/frederick-t-lee/)
+        <a href='https://www.linkedin.com/in/frederick-t-lee/' target='_blank' style='text-decoration: none; font-size: 18px;'>
+            Fred Lee
         </a>
     </div>
     """,
