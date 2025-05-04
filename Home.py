@@ -72,22 +72,22 @@ st.markdown("<u><b>Explanatory Data Analysis (EDA)</b></u>", unsafe_allow_html=T
 col1, col2, col3, col4 = st.columns(4)
 with col1:
     if st.button("EDA: Month"):
-        st.switch_page("pages/1_EDA:_Month.py")
+        st.switch_page("pages/1_EDA_Month.py")
     if st.button("EDA: Income"):
-        st.switch_page("pages/5_EDA:_Income.py")
+        st.switch_page("pages/5_EDA_Income.py")
 with col2:
     if st.button("EDA: Store Types"):
-        st.switch_page("pages/2_EDA:_Store_Types.py")
+        st.switch_page("pages/2_EDA_Store_Types.py")
     if st.button("EDA: Fuel Sales"):
-        st.switch_page("pages/6_EDA:_Fuel_Sales.py")
+        st.switch_page("pages/6_EDA_Fuel_Sales.py")
 with col3:
     if st.button("EDA: Liquor Types"):
-        st.switch_page("pages/3_EDA:_Liquor_Types.py")
+        st.switch_page("pages/3_EDA_Liquor_Types.py")
     if st.button("EDA: Excessive_Drinking"):
-        st.switch_page("pages/7_EDA:_Excessive_Drinking.py")
+        st.switch_page("pages/7_EDA_Excessive_Drinking.py")
 with col4:
     if st.button("EDA: Population"):
-        st.switch_page("pages/4_EDA:_Population.py")
+        st.switch_page("pages/4_EDA_Population.py")
 
 st.header('🍶 Strategy',divider=True)
 st.markdown('''
@@ -103,10 +103,10 @@ st.markdown('''
 col1, col2, col3 = st.columns(3)
 with col1:
     if st.button("Algorithm: Ridge Regression"):
-        st.switch_page("pages/8_Algorithm:_Ridge_Regression.py")
+        st.switch_page("pages/8_Algorithm_Ridge_Regression.py")
 with col2:
     if st.button("Algorithm: Random Forest"):
-        st.switch_page("pages/9_Algorithm:_Random_Forest.py")
+        st.switch_page("pages/9_Algorithm_Random_Forest.py")
 with col3:
     if st.button("Demonstration for Decision Makers"):
         st.switch_page("pages/10_Demonstration_for Decision_Makers.py")
