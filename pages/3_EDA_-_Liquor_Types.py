@@ -96,7 +96,9 @@ with tab3:
     liquor_type_plot(df_county, x="price_per_liter", y="gross_profit", counties=counties2, color="price_range",
                     title="Price vs Profit by County", x_title="Price per Liter", y_title="Gross Profit")
     
+
     st.subheader("Comparing Price Brackets on Profit Across Incomes")
+
     # Create two columns
     col1, col2 = st.columns(2)
 
