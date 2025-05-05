@@ -39,9 +39,9 @@ tab1, tab2 = st.tabs(["Map", "Gross Profit"])
 
 with tab1:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - The average percentage of adults in Iowa that drink excessively is 24%
+                - There is not much variation between counties; the range is only 8%
+                - Excessive drinking does not appear to be correlated with population
                 """)
     
     st.subheader("Excessive Drinking (%) by County")
@@ -49,9 +49,9 @@ with tab1:
 
 with tab2:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - The distribution shows how profit is highest around 23-24%. This partially reflects higher population counties (Polk, Linn, Pottawattamie)
+                - Johnson county (also high population) has a higher Excessive Drinking rate, but has lower profits
+                - Referencing the trendline, there is a very slightly negative association between Excessive Drinking Percentage and Gross Profits.
                 """)
 
     st.subheader("Excessive Drinking (%) vs. Gross Profit by County")

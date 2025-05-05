@@ -38,9 +38,10 @@ tab1, tab2 = st.tabs(["Map", "Gross Profit"])
 
 with tab1:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - Fuel Sales appear to correlate with high population cities and interstate highway locations
+                - Polk County has the highest gas sales by far, with the capital of Des Moines and the intersection of Interstate 80 and 35
+                - Other cities such as Cedar Rapids, Iowa City, Omaha, or Sioux City are located in Linn, Johnson, Pottawattamie, and Woodbury counties, respectively
+                - Each of the other cities also has one interstate highway which runs through them
                 """)
     
     st.subheader("Gas Sales by County")
@@ -49,9 +50,9 @@ with tab1:
 
 with tab2:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - When plotting gas Sales against Gross Profit, there appears to be a strong positive correlation 
+                - These findings are significantly impacted by Polk County (a high sales outlier)
+                - The majority of Iowa counties have less than 3.5 million gallons per year; one tenth of the sales in Polk County
                 """)
 
     st.subheader("Gas Sales vs. Gross Profit by County")
