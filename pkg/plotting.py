@@ -296,3 +296,73 @@ def plot_sales_profit_pie_by_county(df, county_selected, key=None):
             title=f"{county_selected.title()} Liquor Profit Distribution"
         )
         st.plotly_chart(fig_profit, use_container_width=True, key=(key or '') + f"_profit_pie_{county_selected}")
+
+@st.cache_data
+def plot_sales_profit_pie_by_store_type(df, key=None):
+    """
+    Displays side-by-side pie charts of bottles sold and gross profit by store type (`category`).
+    """
+    df_grouped = (
+        df.groupby('category', as_index=False)
+          .agg({'bottles': 'sum', 'gross_profit': 'sum'})
+    )
+    col1, col2 = st.columns(2)
+    with col1:
+        fig1 = px.pie(
+            df_grouped,
+            names='category',
+            values='bottles',
+            title='Sales by Store Type'
+        )
+        st.plotly_chart(fig1, use_container_width=True, key=(key or '') + 'sales_pie_store')
+    with col2:
+        fig2 = px.pie(
+            df_grouped,
+            names='category',
+            values='gross_profit',
+            title='Profit by Store Type'
+        )
+        st.plotly_chart(fig2, use_container_width=True, key=(key or '') + 'profit_pie_store')
+        
+@st.cache_data
+def plot_store_type_profit_by_county(df, counties=None, key=None):
+    """
+    Stacked bar chart showing gross profit by county and store type.
+    """
+    df_plot = df.copy()
+    if counties:
+        df_plot = df_plot[df_plot["county"].isin(counties)]
+        
+    df_grouped = (
+        df_plot.groupby(["county", "category"], as_index=False)
+               .agg({"gross_profit": "sum"})
+    )
+
+    fig = px.bar(
+        df_grouped,
+        x="county",
+        y="gross_profit",
+        color="category",
+        barmode="stack",
+        labels={"gross_profit": "Gross Profit", "category": "Store Type"},
+        title=""
+    )
+    fig.update_layout(xaxis_tickangle=-45, height=500)
+    st.plotly_chart(fig, use_container_width=True, key=key or "store_type_stacked_bar")
+    
+@st.cache_data
+def plot_total_profit_by_store_type(df, key=None):
+    df_grouped = (
+        df.groupby('category', as_index=False)
+          .agg({'gross_profit': 'mean'})
+    )
+
+    fig = px.bar(
+        df_grouped,
+        x='category',
+        y='gross_profit',
+        labels={'category': 'Store Type', 'gross_profit': 'Average monthly Gross Profit'},
+        title=''
+    )
+    fig.update_layout(xaxis_tickangle=-45, height=500)
+    st.plotly_chart(fig, use_container_width=True, key=key or 'profit_by_store_type')
