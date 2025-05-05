@@ -6,7 +6,8 @@ from pkg.load_data import connect_to_iowa, connect_to_county
 st.set_page_config(page_title="Fuel Sales", page_icon="🍸")
 st.header('🍸 Explanatory Data Analysis: Fuel Sales',divider=True)
 st.markdown('''
-            ...(Overview)
+            This section explores county-level fuel sales and its relationship with liquor sales gross profit. 
+            While we expect an increase in fuel sales to correlate with foot traffic in counties and their stores, increasing profits, we will also explore how it relates to both city and interstate highway location. 
             ''')
 
 # county data
