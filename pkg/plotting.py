@@ -86,8 +86,12 @@ def county_month_plot(df, x, y,
     fig.update_layout(showlegend=False, height=500)
     st.plotly_chart(fig, use_container_width=True)
 
-def liquor_type_plot(df, x, y, color=None, trendline=None, 
+def liquor_type_plot(df, x, y, counties=None, color=None, trendline=None, 
                      title="", x_title="", y_title=""):
+    
+    if counties:
+        df = df[df['county'].isin(counties)]
+        
     fig = px.scatter(
         df,
         x=x,
@@ -149,7 +153,8 @@ def plot_income_distribution_by_county(df, key=None):
         df_perc,
         x='county',
         y=bracket_cols,
-        labels={'value': '% of Households', 'variable': 'Income Bracket'}
+        title="",
+        labels={'value': '% of Households in Bracket', 'variable': 'Income Bracket'}
     )
 
     fig.update_layout(
@@ -157,7 +162,7 @@ def plot_income_distribution_by_county(df, key=None):
         xaxis_tickangle=-45,
         yaxis=dict(range=[0, 100], title='% of Households', ticksuffix='%', tickformat='.2f'),
         showlegend=False,
-        title=None
+        title=""
     )
 
     st.plotly_chart(fig, use_container_width=True, key=key or 'income_distribution_by_county_all')
@@ -233,3 +238,61 @@ def plot_income_pie_by_county(df, county_selected, key=None):
 
     fig = px.pie(df_pie, names='income_bracket', values='households', title=f"Income Distribution: {county_selected.title()}")
     st.plotly_chart(fig, use_container_width=True, key=key or f"income_pie_{county_selected}")
+
+@st.cache_data
+def plot_sales_profit_pie_by_county(df, county_selected, key=None):
+    """
+    Displays side-by-side pie charts for a selected county's liquor sales and gross-profit distributions by liquor type,
+    grouping all categories below 1% into 'Other'.
+
+    Parameters:
+    - df: DataFrame containing 'county', 'liquor_type', 'bottles', and 'gross_profit' columns
+    - county_selected: the county to filter on
+    - key: unique Streamlit key prefix
+    """
+    # Filter to the selected county
+    df_sub = df[df['county'] == county_selected]
+    if df_sub.empty:
+        st.warning(f"County '{county_selected}' not found.")
+        return
+
+    # Aggregate bottles sold and gross profit by liquor_type
+    df_grouped = (
+        df_sub
+        .groupby('liquor_type', as_index=False)
+        .agg({'bottles': 'sum', 'gross_profit': 'sum'})
+    )
+
+    # --- Prepare sales pie data, grouping <1% into 'Other' ---
+    sales_total = df_grouped['bottles'].sum()
+    df_sales = df_grouped.copy()
+    df_sales['pct'] = df_sales['bottles'] / sales_total
+    df_sales['category'] = df_sales['liquor_type'].where(df_sales['pct'] >= 0.01, other='Other')
+    df_sales = df_sales.groupby('category', as_index=False).agg({'bottles': 'sum'})
+
+    # --- Prepare profit pie data, grouping <1% into 'Other' ---
+    profit_total = df_grouped['gross_profit'].sum()
+    df_profit = df_grouped.copy()
+    df_profit['pct'] = df_profit['gross_profit'] / profit_total
+    df_profit['category'] = df_profit['liquor_type'].where(df_profit['pct'] >= 0.01, other='Other')
+    df_profit = df_profit.groupby('category', as_index=False).agg({'gross_profit': 'sum'})
+
+    # Render two pie charts side by side
+    col1, col2 = st.columns(2)
+    with col1:
+        fig_sales = px.pie(
+            df_sales,
+            names='category',
+            values='bottles',
+            title=f"{county_selected.title()} Liquor Sales Distribution"
+        )
+        st.plotly_chart(fig_sales, use_container_width=True, key=(key or '') + f"_sales_pie_{county_selected}")
+
+    with col2:
+        fig_profit = px.pie(
+            df_profit,
+            names='category',
+            values='gross_profit',
+            title=f"{county_selected.title()} Liquor Profit Distribution"
+        )
+        st.plotly_chart(fig_profit, use_container_width=True, key=(key or '') + f"_profit_pie_{county_selected}")
