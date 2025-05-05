@@ -1,5 +1,5 @@
 import streamlit as st
-from pkg.mapping import gas_sales_map, drinking_map
+from pkg.mapping import drinking_map
 from pkg.plotting import county_population_plot
 from pkg.load_data import connect_to_iowa, connect_to_county
 
