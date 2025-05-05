@@ -8,7 +8,7 @@ import joblib
 import tempfile
 import requests
 
-@st.cache_resource
+#@st.cache_resource
 def connect_to_county(table):
 
     # create API client
