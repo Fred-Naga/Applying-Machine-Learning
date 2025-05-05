@@ -222,3 +222,50 @@ def drinking_map(df, url):
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
+@st.cache_data
+def map_gross_profit_choropleth(df, url, liquor_type='All', key=None):
+    """
+    Creates a county-level choropleth map of gross profit,
+    filtered by liquor type. If a specific type is chosen, it assumes
+    the DataFrame already contains county-aggregated gross_profit.
+
+    Parameters:
+    - df: DataFrame with ['fips','county','gross_profit','liquor_type']
+    - url: URL to a GeoJSON for county boundaries
+    - liquor_type: specific liquor type filter or 'All'
+    - key: unique Streamlit key
+    """
+    # Copy and filter for chosen liquor type
+    df_map = df.copy()
+    if liquor_type and liquor_type.lower() != 'all':
+        df_map = df_map[df_map['liquor_type'] == liquor_type]
+        # Use existing county-level values (assumes one row per county)
+        agg = df_map[['fips', 'county', 'gross_profit']].drop_duplicates(subset=['fips'])
+    else:
+        # Aggregate across all types
+        agg = (
+            df_map
+            .groupby('fips', as_index=False)
+            .agg({'gross_profit': 'sum', 'county': 'first'})
+        )
+
+    # Fetch GeoJSON shapes
+    response = requests.get(url)
+    shapes = response.json()
+
+    # Build the choropleth
+    fig = px.choropleth(
+        agg,
+        geojson=shapes,
+        locations='fips',
+        color='gross_profit',
+        color_continuous_scale='Plasma',
+        range_color=(agg['gross_profit'].min(), agg['gross_profit'].max()),
+        scope='usa',
+        labels={'gross_profit': 'Gross Profit'},
+        hover_name='county'
+    )
+    fig.update_geos(fitbounds='locations', visible=False)
+    fig.update_layout(margin=dict(r=0,t=0,l=0,b=0), height=400)
+    st.plotly_chart(fig, use_container_width=True, key=key or f"gross_profit_map_{liquor_type}")
