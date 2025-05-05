@@ -269,3 +269,39 @@ def map_gross_profit_choropleth(df, url, liquor_type='All', key=None):
     fig.update_geos(fitbounds='locations', visible=False)
     fig.update_layout(margin=dict(r=0,t=0,l=0,b=0), height=400)
     st.plotly_chart(fig, use_container_width=True, key=key or f"gross_profit_map_{liquor_type}")
+    
+def map_store_count_choropleth(df, url, key=None):
+    """
+    Creates a county-level choropleth map showing the number of liquor stores per county.
+    """
+    # Aggregate count of distinct stores by county FIPS
+    agg = (
+        df.dropna(subset=['fips'])
+          .groupby('fips', as_index=False)
+          .agg({'store': 'nunique'})
+          .rename(columns={'store': 'store_count'})
+    )
+    # If a 'county' column exists in agg, preserve it for hover
+    if 'county' in df.columns:
+        agg = agg.merge(
+            df[['fips','county']].drop_duplicates('fips'),
+            on='fips', how='left'
+        )
+    # Load county shapes
+    response = requests.get(url)
+    shapes = response.json()
+    fig = px.choropleth(
+        agg,
+        geojson=shapes,
+        locations='fips',
+        color='store_count',
+        color_continuous_scale='Blues',
+        range_color=(agg['store_count'].min(), agg['store_count'].max()),
+        scope='usa',
+        labels={'store_count': 'Number of Stores'},
+        hover_name='county',
+        hover_data={'store_count': True}
+    )
+    fig.update_geos(fitbounds='locations', visible=False)
+    fig.update_layout(margin=dict(r=0, t=0, l=0, b=0), height=400)
+    st.plotly_chart(fig, use_container_width=True, key=key or 'store_count_map')
