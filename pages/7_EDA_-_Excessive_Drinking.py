@@ -6,7 +6,7 @@ from pkg.load_data import connect_to_iowa, connect_to_county
 st.set_page_config(page_title="Excessive Drinking", page_icon="🍻")
 st.header('🍻 Explanatory Data Analysis: Excessive Drinking',divider=True)
 st.markdown('''
-            ...(Overview)
+            This section explores county-level excessive drinking and its effects on liquor sales gross profits. While this variable is related to health outcomes, it may also serve as a proxy for consumer behavior; an important consideration when deciding where to place a liquor store. 
             ''')
 
 # county data
