@@ -56,10 +56,19 @@ with tab2:
 
     st.subheader("Excessive Drinking (%) vs. Gross Profit by County")
     county_population_plot(
+        df_county,
+        x="excessive_drinking",
+        y="gross_profit",
+        color="county",
+        x_title="Excessive drinking perventage",
+        y_title="Aggregate yearly gross profit by county",
+        trendline="ols"        # optional: adds a regression line
+    )
+    county_population_plot(
         df_grouped,
         x="excessive_drinking",
         y="gross_profit",
-        x_title="County Level Excessive Drinking",
-        y_title="County Level Gross Profit",
+        x_title="Excessive drinking perventage",
+        y_title="Aggregate yearly gross profit by county",
         trendline="ols"        # optional: adds a regression line
     )

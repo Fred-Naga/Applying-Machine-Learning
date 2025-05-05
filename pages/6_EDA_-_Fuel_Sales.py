@@ -60,15 +60,15 @@ with tab2:
         x="gas_sales",
         y="gross_profit",
         color="county",
-        x_title="County Level Gas Sales",
-        y_title="County Level Gross Profit",
+        x_title="Gas sales",
+        y_title="Aggregate yearly gross profit by county",
         trendline="ols"        # optional: adds a regression line
     )
     county_population_plot(
         df_county,
         x="gas_sales",
         y="gross_profit",
-        x_title="County Level Gas Sales",
-        y_title="County Level Gross Profit",
+        x_title="Gas sales",
+        y_title="Aggregate yearly gross profit by county",
         trendline="ols"        # optional: adds a regression line
     )
