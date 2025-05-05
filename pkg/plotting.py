@@ -153,7 +153,8 @@ def plot_income_distribution_by_county(df, key=None):
         df_perc,
         x='county',
         y=bracket_cols,
-        labels={'value': '% of Households', 'variable': 'Income Bracket'}
+        title="",
+        labels={'value': '% of Households in Bracket', 'variable': 'Income Bracket'}
     )
 
     fig.update_layout(
@@ -161,7 +162,7 @@ def plot_income_distribution_by_county(df, key=None):
         xaxis_tickangle=-45,
         yaxis=dict(range=[0, 100], title='% of Households', ticksuffix='%', tickformat='.2f'),
         showlegend=False,
-        title=None
+        title=""
     )
 
     st.plotly_chart(fig, use_container_width=True, key=key or 'income_distribution_by_county_all')
