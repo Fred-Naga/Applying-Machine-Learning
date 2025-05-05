@@ -6,7 +6,12 @@ from pkg.load_data import connect_to_iowa, connect_to_county, connect_to_city, c
 st.set_page_config(page_title="Population", page_icon="🥃")
 st.header('🥃 Explanatory Data Analysis: Population',divider=True)
 st.markdown('''
-            ...(Overview)
+            This section investigates how population characteristics, including gender and age, 
+            relate to liquor store gross profit in Iowa. By visualizing spatial and 
+            demographic patterns, we aim to understand whether densely populated areas or certain 
+            population segments are associated with higher alcohol-related revenue. We also explore 
+            seasonal variations to detect possible trends in consumer behavior across different 
+            times of the year.
             ''')
 
 # county data
@@ -34,9 +39,10 @@ tab1, tab2, tab3, tab4 = st.tabs(["Map", "County-Level", "City-Level", "Gender &
 
 with tab1:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - High-grossing liquor stores are concentrated in densely populated counties 
+                such as Polk, Linn, and Scott.
+                - Seasonal trends do not drastically change the spatial distribution of profit, 
+                suggesting location and population may be more influential than season.
                 """)
 
     st.subheader("Iowa Population by County")
@@ -58,9 +64,11 @@ with tab1:
 
 with tab2:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - Aggregate gross profit by county has a strong positive correlation with county 
+                population.
+                - However, at the individual store level, this correlation weakens, suggesting 
+                store-level factors (e.g., liquor assortments, store type) play a role.
+                - Population alone cannot explain store-level performance.
                 """)
     
     st.subheader("Aggregate Gross Profit vs County Population")
@@ -93,9 +101,12 @@ with tab2:
 
 with tab3:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - Similar to county-level results, city population correlates strongly with 
+                aggregate gross profit.
+                - At the store level, the relationship is weak, reinforcing that other 
+                store-specific factors must be considered.
+                - Larger cities tend to have more profitable stores overall, but not necessarily 
+                more profitable individual stores.
                 """)
     
     st.subheader("Aggregate Gross Profit vs City Population")
@@ -128,9 +139,12 @@ with tab3:
     
 with tab4:
     st.markdown("""
-                - ...(takeaway 1)
-                - ...(takeaway 2)
-                - ...(takeaway 3)
+                - Gender alone shows minimal impact on liquor store gross profit at the county 
+                level.
+                - Age groups between 25–44 show a strong correlation with gross profit, likely 
+                due to higher purchasing power and social consumption patterns.
+                - Correlation weakens notably in populations over 45, suggesting younger 
+                demographics are more predictive of liquor sales.
                 """)
     
     st.subheader("Aggregate Gross Profit vs Geder & Age Population")
