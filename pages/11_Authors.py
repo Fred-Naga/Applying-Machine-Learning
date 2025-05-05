@@ -39,8 +39,8 @@ with col2:
     st.markdown('''
                 - Pronouns: he/him
                 - GitHub username: [Ftl2110](https://github.com/Ftl2110)
-                - Hometown: New Jersey, USA
+                - Hometown: Flemington, NJ
                 - Education: 
                     - School of International and Public Affairs | Columbia University (2023-2025)
-                    - college (if you want to add)
+                    - Stetson University (2013-2017)
                 ''')
