@@ -6,8 +6,10 @@ from pkg.load_data import connect_to_iowa, connect_to_county
 st.set_page_config(page_title="Excessive Drinking", page_icon="🍻")
 st.header('🍻 Explanatory Data Analysis: Excessive Drinking',divider=True)
 st.markdown('''
-            This section explores county-level excessive drinking and its effects on liquor sales gross profits. 
-            While this variable is related to health outcomes, it may also serve as a proxy for consumer behavior; an important consideration when deciding where to place a liquor store. 
+            This section explores county-level excessive drinking and its effects on liquor sales 
+            gross profits. While this variable is related to health outcomes, it may also serve as 
+            a proxy for consumer behavior; an important consideration when deciding where to place 
+            a liquor store. 
             ''')
 
 # county data
@@ -40,9 +42,9 @@ tab1, tab2 = st.tabs(["Map", "Gross Profit"])
 
 with tab1:
     st.markdown("""
-                - The average percentage of adults in Iowa that drink excessively is 24%
-                - There is not much variation between counties; the range is only 8%
-                - Excessive drinking does not appear to be correlated with population
+                - The average percentage of adults in Iowa that drink excessively is 24%.
+                - There is not much variation between counties; the range is only 8%.
+                - Excessive drinking does not appear to be correlated with population.
                 """)
     
     st.subheader("Excessive Drinking (%) by County")
@@ -50,9 +52,12 @@ with tab1:
 
 with tab2:
     st.markdown("""
-                - The distribution shows how profit is highest around 23-24%. This partially reflects higher population counties (Polk, Linn, Pottawattamie)
-                - Johnson county (also high population) has a higher Excessive Drinking rate, but has lower profits
-                - Referencing the trendline, there is a very slightly negative association between Excessive Drinking Percentage and Gross Profits.
+                - The distribution shows how profit is highest around 23-24%. This partially 
+                reflects higher population counties (Polk, Linn, Pottawattamie).
+                - Johnson county (also high population) has a higher excessive drinking rate, but 
+                has lower profits.
+                - Referencing the trendline, there is a very slightly negative association between 
+                excessive drinking percentage and gross profits.
                 """)
 
     st.subheader("Excessive Drinking (%) vs. Gross Profit by County")
