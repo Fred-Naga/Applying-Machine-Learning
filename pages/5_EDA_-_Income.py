@@ -7,7 +7,8 @@ import pandas as pd
 st.set_page_config(page_title="Income", page_icon="🍷")
 st.header('🍷 Explanatory Data Analysis: Income',divider=True)
 st.markdown('''
-            In this section we explore income throughout Iowa's counties. In particular, we check to see how it interacts with liquor sales gross profit. We're particularly interested if there is correlation between the two, as the majority of counties in Iowa have an average income lower than 75k, and to see if there's any deviation from an expected increase in profits when income increases.
+            In this section we explore income throughout Iowa's counties. 
+            In particular, we check to see how it interacts with liquor sales gross profit. We're particularly interested if there is correlation between the two, as the majority of counties in Iowa have an average income lower than 75k, and to see if there's any deviation from an expected increase in profits when income increases.
             ''')
 
 # county data
@@ -57,9 +58,9 @@ with tab2:
 
 with tab3:
     st.markdown("""
-                - Considering the trendline, there is a small positive correlation beteween annual income and gross profits.
-                - Polk county, which contains Des Moines, continues to act as an outlier for profits despite its relatively moderate income
-                - Interestingly enough, Dallas county, which has the highest income, does not have the highest profits. This indicates consumers may travel to other counties to purchase liquor.
+                - Considering the trendline on the second graph, there is a small positive correlation beteween annual income and gross profits.
+                - Polk County, which contains Des Moines, continues to act as an outlier for profits despite its relatively moderate income
+                - Interestingly enough, Dallas County, which has the highest income, does not have the highest profits. This indicates consumers may travel to other counties to purchase liquor.
                 """)
     
     # This function is generic
