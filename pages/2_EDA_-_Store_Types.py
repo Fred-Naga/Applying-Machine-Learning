@@ -66,14 +66,14 @@ with tab2:
                 generate lower average gross profit statewide.
                 """)
     
-    st.subheader("Average Monthly Gross Profit per Store by Category")
+    st.subheader("Average Monthly Gross Profit by Store Type")
     store_type_plot(df_store,
                      x="category",
                      y="gross_profit",
                      x_title="Store type",
                      y_title="Average monthly gross profit")
     
-    st.subheader("Average Monthly Gross Profit in Iowa by Store Category")
+    st.subheader("Average Monthly Gross Profit in Iowa by Store Type")
     plot_total_profit_by_store_type(df_store)
 
 with tab3:

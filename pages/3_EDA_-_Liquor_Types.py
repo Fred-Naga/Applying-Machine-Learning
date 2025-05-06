@@ -53,7 +53,7 @@ with tab2:
                 - Overall, Whiskies tend to be the most popular liquor type.
                 """)
     
-    st.subheader("Aggregate Gross Profit vs Liquor Type")
+    st.subheader("Aggregate Gross Profit by Liquor Type")
     liquor_type_plot(df_liquor,
                      x="liquor_type",
                      y="gross_profit",
