@@ -6,16 +6,16 @@ from pkg.plotting import county_month_line, month_plot
 st.set_page_config(page_title="Month", page_icon="🍾")
 st.header('🍾 Explanatory Data Analysis: Month',divider=True)
 st.markdown('''
-            In this section we explore seasonal trends in item-level gross profit across Iowa by using 
-            state- and county-level data. Additionally, county-level aggregations provide 
-            insight into whether these trends hold consistently across different regions.
+            In this section we explore seasonal trends in item-level gross profit across Iowa by 
+            using state- and county-level data. Additionally, county-level average gross profit 
+            provide insight into whether these trends hold consistently across different regions.
             ''')
 
 # county data
 table='solid-dominion-452916-p4.aml_fl_tn.county_with_month'
 df = connect_to_county(table)
-df_month = df.groupby(['month'])['gross_profit'].sum().reset_index()
-df_county = df.groupby(['county', 'month'])['gross_profit'].sum().reset_index()
+df_month = df.groupby(['month'])['gross_profit'].mean().reset_index()
+df_county = df.groupby(['county', 'month']).first().reset_index()
 
 # store data
 table2='solid-dominion-452916-p4.aml_fl_tn.iowa_with_month'
@@ -62,25 +62,26 @@ with tab2:
                 - Peaks in May and October may also indicate consumption is driven by more temperate weather.
                 """)
 
-    st.subheader("Aggregate Gross Profit in Iowa vs Month")
+    st.subheader("Average Monthly Gross Profit in Iowa")
     month_plot(df_month, 
                x="month", 
                y="gross_profit",
                x_title="Month", 
-               y_title="Aggregate gross profit in Iowa")
+               y_title="Average monthly gross profit in Iowa")
     
 with tab3:
     st.markdown("""
-                - County-level trends mirror the state-level pattern, indicating 
-                a consistent seasonal cycle across regions.
-                - State-level trends are not necessarily reflected at a county-level, however this may be explained by consumers going elsewhere to purchase liquor (such as Polk county).
-                - Polk county has an outsized impact on trends and has a abnormal increase in profit in October compared to other counties.
+                - State-level trends are not necessarily reflected at a county-level, however 
+                this may be explained by consumers going elsewhere to purchase liquor (such as 
+                Polk county).
+                - Polk county has an outsized impact on trends and has a abnormal increase in 
+                profit in October compared to other counties.
                 """)
     
-    st.subheader("Aggregate Gross Profit by County vs Month")
+    st.subheader("Average Monthly Gross Profit by County")
     county_month_line(df_county, 
                       x="month", 
-                      y="gross_profit",
+                      y="avg_gross_profit",
                       color='county',
                       x_title="Month", 
-                      y_title="Aggregate gross profit by county")
+                      y_title="Average monthly gross profit by county")

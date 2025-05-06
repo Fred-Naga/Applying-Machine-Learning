@@ -18,8 +18,6 @@ df_county = connect_to_county(table)
 df_income = pd.read_csv("table/annual_income.csv")
 df_county = df_county.merge(df_income, on="county", how="left")
 df_county = df_county.groupby('county').first().reset_index()
-df_county['gross_profit_to_pop'] = df_county['gross_profit'] / df_county['pop_county']
-df_county['gross_profit_to_pop'] = df_county['gross_profit_to_pop'].astype(float)
 df_ungrouped = connect_to_county(table).reset_index()
 df_ungrouped = df_ungrouped.merge(df_income, on="county", how="left")
 
@@ -61,29 +59,28 @@ with tab3:
 
 with tab4:
     st.markdown("""
+                - Dallas County, which has the highest income, has the highest gross profit.
                 - Considering the trendline on the second graph, there is a small positive 
-                correlation beteween annual income and gross profits per capita.
-                - Interestingly enough, Dallas County, which has the highest income, does not 
-                have the highest profits. This indicates consumers may travel to other counties to purchase liquor.
+                correlation beteween annual income and average yearly gross profit.
                 """)
     
-    st.subheader("Average Annual Income vs Gross Profit per Capita by County")
+    st.subheader("Average Yearly Gross Profit by County vs Average Annual Income")
     county_population_plot(
         df_county,
         x="annual_income",
-        y="gross_profit_to_pop",
+        y="avg_gross_profit",
         color="county",
         title="",
         x_title="Average annual income",
-        y_title="Aggregate yearly gross profit per capita by county",
+        y_title="Average yearly gross profit by county",
         trendline="ols"        # optional: adds a regression line
     )
     county_population_plot(
         df_county,
         x="annual_income",
-        y="gross_profit_to_pop",
+        y="avg_gross_profit",
         title="",
         x_title="Average annual income",
-        y_title="Aggregate yearly gross profit per capita by county",
+        y_title="Average yearly gross profit by county",
         trendline="ols"        # optional: adds a regression line
     )

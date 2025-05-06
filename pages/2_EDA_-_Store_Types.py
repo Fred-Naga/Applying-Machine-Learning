@@ -67,13 +67,6 @@ with tab2:
                 """)
     
     st.subheader("Average Monthly Gross Profit by Store Type")
-    store_type_plot(df_store,
-                     x="category",
-                     y="gross_profit",
-                     x_title="Store type",
-                     y_title="Average monthly gross profit")
-    
-    st.subheader("Average Monthly Gross Profit in Iowa by Store Type")
     plot_total_profit_by_store_type(df_store)
 
 with tab3:
@@ -84,17 +77,8 @@ with tab3:
                 highlighting their local demand.
                 - Grocery stores accounts for a large portion of metropolitan county profits, which suggests that customers buy liquor as an ancillary to food.
                 """)
-
-    st.subheader("Average Monthly Gross Profit by County vs Store Types")
-    store_type_plot(df_county,
-                     x="category",
-                     y="gross_profit",
-                     color="county",
-                     x_title="Store type",
-                     y_title="Average monthly gross profit")
     
-    st.subheader("Gross Profit by Store Type")
-    
+    st.subheader("Aggregate Yearly Gross Profit by County")
     counties = df_store["county"].dropna().unique()
     selected_counties = st.multiselect(
         "Select counties to compare summed store-type profits:",

@@ -30,7 +30,10 @@ def connect_to_city(table):
     credentials = service_account.Credentials.from_service_account_info(creds)
 
     sql = f"""
-    SELECT *
+    SELECT city,
+            pop_city,
+            gross_profit,
+            avg_gross_profit
     FROM `{table}`
     """
 

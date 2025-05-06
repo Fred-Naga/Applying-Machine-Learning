@@ -17,11 +17,11 @@ table='solid-dominion-452916-p4.aml_fl_tn.county'
 df_county = connect_to_county(table)
 df_county = df_county.groupby('county').first().reset_index()
 
-df_ungrouped = connect_to_county(table)
+# df_ungrouped = connect_to_county(table)
 
-# iowa data
-table='solid-dominion-452916-p4.aml_fl_tn.iowa_without_month'
-df_iowa = connect_to_iowa(table)
+# # iowa data
+# table='solid-dominion-452916-p4.aml_fl_tn.iowa_without_month'
+# df_iowa = connect_to_iowa(table)
 
 df_grouped = (
     df_county.groupby("county", as_index=False)
@@ -52,29 +52,29 @@ with tab1:
 
 with tab2:
     st.markdown("""
-                - The distribution shows how profit is highest around 23-24%. This partially 
-                reflects higher population counties (Polk, Linn, Pottawattamie).
-                - Johnson county (also high population) has a higher excessive drinking rate, but 
-                has lower profits.
-                - Referencing the trendline, there is a very slightly negative association between 
-                excessive drinking percentage and gross profits.
+                - The distribution shows how profit is highest around 24-25%. This does not
+                necessarily reflects higher population counties, such as Polk, Linn, Pottawattamie.
+                - Buchanan county has the highest excessive drinking rate, but has low average 
+                yearly profit.
+                - Referencing the trendline, there is a slight negative association between 
+                excessive drinking percentage and average yearly gross profit.
                 """)
 
-    st.subheader("Excessive Drinking (%) vs Gross Profit by County")
+    st.subheader("Average Yearly Gross Profit by County vs Excessive Drinking (%)")
     county_population_plot(
         df_county,
         x="excessive_drinking",
-        y="gross_profit",
+        y="avg_gross_profit",
         color="county",
         x_title="Excessive drinking perventage",
-        y_title="Aggregate yearly gross profit by county",
+        y_title="Average yearly gross profit by county",
         trendline="ols"        # optional: adds a regression line
     )
     county_population_plot(
-        df_grouped,
+        df_county,
         x="excessive_drinking",
-        y="gross_profit",
+        y="avg_gross_profit",
         x_title="Excessive drinking perventage",
-        y_title="Aggregate yearly gross profit by county",
+        y_title="Average yearly gross profit by county",
         trendline="ols"        # optional: adds a regression line
     )

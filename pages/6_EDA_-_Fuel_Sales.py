@@ -9,30 +9,17 @@ st.markdown('''
             This section explores county-level fuel sales and its relationship with liquor sales 
             gross profit. While we expect an increase in fuel sales to correlate with foot traffic 
             in counties and their stores, increasing profits, we also explore the relationship 
-            between fuel sales per capita and aggregate gross profit.
+            between fuel sales per capita and average yearly gross profit by county.
             ''')
 
 # county data
 table='solid-dominion-452916-p4.aml_fl_tn.county'
 df_county = connect_to_county(table)
 df_county = df_county.groupby('county').first().reset_index()
-df_county['gross_profit_to_pop'] = df_county['gross_profit'] / df_county['pop_county']
+# df_county['gross_profit_to_pop'] = df_county['gross_profit'] / df_county['pop_county']
 df_county['gas_to_pop'] = df_county['gas_sales'] / df_county['pop_county']
-df_county['gross_profit_to_pop'] = df_county['gross_profit_to_pop'].astype(float)
+# df_county['gross_profit_to_pop'] = df_county['gross_profit_to_pop'].astype(float)
 df_county['gas_to_pop'] = df_county['gas_to_pop'].astype(float)
-
-# # iowa data
-# table='solid-dominion-452916-p4.aml_fl_tn.iowa_without_month'
-# df_iowa = connect_to_iowa(table)
-# df_grouped = (
-#     df_county.groupby("county", as_index=False)
-#       .agg({
-#           "fips": "first",                
-#           "excessive_drinking": "first",
-#           "gross_profit": "sum"    
-#       })
-# )
-# df_grouped["excessive_drinking"] = df_grouped["excessive_drinking"] / 100
 
 url = "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
 
@@ -63,10 +50,10 @@ with tab2:
                 - The majority of Iowa counties have less than 3.5 million gallons per year; one 
                 tenth of the sales in Polk County.
                 - On the contrary, looking at the gas sales per capita, there is almost no 
-                correlation with gross profit per capita.
+                correlation with average yearly gross profit.
                 """)
 
-    st.subheader("Gas Sales vs Gross Profit by County")
+    st.subheader("Aggreagate Yearly Gross Profit by County vs Gas Sales")
     county_population_plot(
         df_county,
         x="gas_sales",
@@ -85,21 +72,21 @@ with tab2:
         trendline="ols"        # optional: adds a regression line
     )
 
-    st.subheader("Gas Sales per Capita vs Gross Profit per Capita by County")
+    st.subheader("Average Yearly Gross Profit by County vs Gas Sales per Capita")
     county_population_plot( 
         df_county,
         x="gas_to_pop",
-        y="gross_profit_to_pop",
+        y="avg_gross_profit",
         color="county",
         x_title="Gas sales per capita",
-        y_title="Aggregate yearly gross profit per capita by county",
+        y_title="Average yearly gross profit by county",
         trendline="ols"        # optional: adds a regression line
     )
     county_population_plot(
         df_county,
         x="gas_to_pop",
-        y="gross_profit_to_pop",
+        y="avg_gross_profit",
         x_title="Gas sales per capita",
-        y_title="Aggregate yearly gross profit per capita by county",
+        y_title="Average yearly gross profit by county",
         trendline="ols"        # optional: adds a regression line
     )

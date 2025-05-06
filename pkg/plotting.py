@@ -373,7 +373,7 @@ def plot_store_type_profit_by_county(df, counties=None, key=None):
         y="gross_profit",
         color="category",
         barmode="stack",
-        labels={"gross_profit": "Gross Profit", "category": "Store Type"},
+        labels={"gross_profit": "Aggregate yearly gross profit by county", "category": "Store type"},
         title=""
     )
     fig.update_layout(xaxis_tickangle=-45, height=500)
