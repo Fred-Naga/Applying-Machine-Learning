@@ -1,7 +1,7 @@
 import streamlit as st
 from pkg.load_data import connect_to_county, connect_to_month
 from pkg.mapping import gross_profit_map
-from pkg.plotting import county_month_plot, month_plot
+from pkg.plotting import county_month_line, month_plot, county_month_plot
 
 st.set_page_config(page_title="Month", page_icon="🍾")
 st.header('🍾 Explanatory Data Analysis: Month',divider=True)
@@ -102,6 +102,15 @@ with tab3:
     county_month_plot(df_county, 
                       x="month", 
                       y="gross_profit",
-                      color="county",
+                      color='county',
+                      x_title="Month", 
+                      y_title="Aggregate gross profit by county")
+
+    
+    st.subheader("Explore Time Trends by County")
+    county_month_line(df_county, 
+                      x="month", 
+                      y="gross_profit",
+                      color='county',
                       x_title="Month", 
                       y_title="Aggregate gross profit by county")
