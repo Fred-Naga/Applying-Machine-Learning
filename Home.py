@@ -54,7 +54,7 @@ st.markdown('''<u><b>Features</b></u>''', unsafe_allow_html=True)
 st.markdown('''
     1. `month`: [Months](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Assumes season is one of the important factors influencing consumers' liquor preference.
     2. `s_(store type)`: [Store types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Categories of class "E" liquor selling stores such as: grocery store, liquor store/bar, gas station, pharmacy, distillery/brewery, general store, convenience store, other, or unknown.
-    3. `l_(liquor type)`: [Liquor liters by types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Liters for sold liquor types, such as whiskey liqueur, Canadian whisky, and aged rum.
+    3. `l_(liquor type)`: [Liquor liters by types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Liters for sold liquor types, such as whiskey liqueur, Canadian whisky, and aged rum in 2024 liquor transactions.
     4. `c_(county)`: Counties. Since we are considering only stores in Iowa, this variable alone is used to capture geographical characteristics when creating the algorithm. However, we conduct exploratory data analysis using the following features to capture the effects of each county-level characteristic on gross profit.
         - [Adult population age brackets by gender](https://catalog.data.gov/dataset/iowa-population-18-years-and-over-by-sex-age-and-educational-attainment-acs-5-year-estimat?): This variable includes adult age categorized into the following buckets: (18–24, 25–34, 35–44, 45–64, and 65+) at the county level, separating male and female populations.
         - [Annual income](https://data.census.gov/table?q=B19001&g=040XX00US19$0500000_860XX00US78940): The ACS 5-Year estimates divide household incomes into 16 brackets spanning from under \\$10,000 up to \\$200,000 or more.
@@ -122,7 +122,7 @@ st.markdown('''
             to other states, especially non-Midwestern ones.
             - **Complex interpretation:** Using many features makes it hard to pinpoint 
             individual drivers, particularly after regularization.
-            - **Scope of sales data:** We only have liquor transaction, not inventory data. 
+            - **Scope of sales data:** We only have liquor transaction in 2024, not inventory data. 
             Additionally, they do not include beer, wine, or cider.
             - **Missing ancillary purchases:** There’s no data on complementary food or 
             non‑liquor drinks, which could affect gross profit.
