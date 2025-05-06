@@ -6,7 +6,7 @@ from pkg.plotting import county_month_line, month_plot, county_month_plot
 st.set_page_config(page_title="Month", page_icon="🍾")
 st.header('🍾 Explanatory Data Analysis: Month',divider=True)
 st.markdown('''
-            We explore seasonal trends in item-level gross profit across Iowa by using 
+            In this section we explore seasonal trends in item-level gross profit across Iowa by using 
             state- and county-level data. Additionally, county-level aggregations provide 
             insight into whether these trends hold consistently across different regions.
             ''')
@@ -80,9 +80,10 @@ with tab1:
 with tab2:
     st.markdown("""
                 - At the state level, gross profit peaks in October and hits a 
-                low in January, suggesting a seasonal effect on liquor sales.
-                - The sharp rise from January to October suggests that demand 
-                may be influenced by weather, holidays, or economic cycles.
+                low in January, suggesting a seasonal variations of liquor sales.
+                - The sharp rise from September to October, peak in May, and hightened level from October-December suggests that demand 
+                is influenced by weather, holidays, or economic cycles.
+                - Peaks in May and October may also indicate consumption is driven by more temperate weather.
                 """)
 
     st.subheader("Aggregate Gross Profit in Iowa vs Month")
@@ -96,6 +97,8 @@ with tab3:
     st.markdown("""
                 - County-level trends mirror the state-level pattern, indicating 
                 a consistent seasonal cycle across regions.
+                - State-level trends are not necessarily reflected at a county-level, however this may be explained by consumers going elsewhere to purchase liquor (such as Polk county).
+                - Polk county has an outsized impact on trends and has a abnormal increase in profit in October compared to other counties.
                 """)
     
     st.subheader("Aggregate Gross Profit by County vs Month")
