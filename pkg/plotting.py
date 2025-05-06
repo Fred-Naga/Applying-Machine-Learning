@@ -1,6 +1,5 @@
 import streamlit as st
 import plotly.express as px
-import pandas as pd
 
 def county_population_plot(df, x, y, 
                            color=None, trendline=None,
@@ -58,19 +57,44 @@ def plot_price_range_histogram(df):
     fig.update_layout(showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
-def month_plot(df, x, y, color=None, trendline=None, 
-               title="", x_title="", y_title=""):
-    fig = px.scatter(
+@st.cache_data
+def month_plot(df, x, y, color=None, title="", x_title="", y_title=""):
+    fig = px.line(
         df,
         x=x,
         y=y,
-        color=color if color else None,   
-        trendline=trendline if trendline else None, 
+        color=color if color else None,
+        markers=True,   
         labels={title: title, x: x_title, y: y_title},
     )
     fig.update_layout(showlegend=False, height=500)
     st.plotly_chart(fig, use_container_width=True)
 
+def county_month_line(df, x, y, 
+                      color=None,
+                      title="", x_title="", y_title="", key=None):
+    
+    counties = df['county'].dropna().unique()
+    selected_counties = st.multiselect("Select a county", sorted(counties), default='polk', key=key or 'county_multi')
+
+    if not selected_counties:
+        st.warning("Please select at least one county to display the chart.")
+        return
+
+    df_filtered = df[df['county'].isin(selected_counties)]
+    
+    fig = px.line(
+        df_filtered,
+        x=x,
+        y=y,
+        markers=True,
+        color=color if color else None,     
+        labels={title: title, x: x_title, y: y_title},
+    )
+    fig.update_layout(showlegend=False, height=500)
+    st.plotly_chart(fig, use_container_width=True, key=key or f"{x}_{y}_line_chart")
+
+@st.cache_data 
 def county_month_plot(df, x, y, 
                       color=None, trendline=None,
                       title="", x_title="", y_title=""):
