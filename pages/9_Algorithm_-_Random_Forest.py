@@ -62,8 +62,6 @@ with tab2:
                 - We applied this model in a demonstration to illustrate its potential for predicting 
                 monthly item-level gross profit by store.
                 """)
-    if st.button("Demonstration for Decision Makers"):
-        st.switch_page("pages/10_Demonstration_for Decision_Makers.py")
 
     st.subheader("Actual vs Projected Monthly Gross Profit")
 
