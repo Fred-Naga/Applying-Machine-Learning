@@ -8,7 +8,7 @@ county_table='solid-dominion-452916-p4.aml_fl_tn.county'
 url = "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
 
 df_county = connect_to_county(county_table).reset_index()
-df_income = pd.read_csv("annual_income.csv")
+df_income = pd.read_csv("table/annual_income.csv")
 df_ungrouped = connect_to_county(county_table).reset_index()
 df_ungrouped = df_ungrouped.merge(df_income, on="county", how="left")
 df_liquor = df_county.groupby(['liquor_type'])['gross_profit'].sum().reset_index()
@@ -25,19 +25,18 @@ st.markdown('''
             Additionally, we consider preferences of different price brackets across a range of salaries. This allows for quick identification of which products are most profitable and how consumption patterns vary by location.
             ''')
 
-tab1, tab2, tab3 = st.tabs(["Map", "State and County Trends", "Price Ranges on Gross Profit"])
+tab1, tab2, tab3, tab4 = st.tabs(["Map", "State-Level", "County-Level", "Price Ranges on Gross Profit"])
 
 #############################################################
 
 with tab1:
     st.markdown("""
-                - At the state level, American Vodkas generate the highest gross profit, followed by different varieties of Whisky. Other popular liquor types include 100% Agave Tequila and Spiced Rum.
-                - Overall, Whiskies tend to be the most popular liquor type.
-                - While Polk has the most sales for all categories, there seems to be a particular bump in consumption of Straight Bourbon Whiskies and Spiced Rum in Linn and Johnson counties.
+                - While Polk has the most sales for all categories, there seems to be a particular 
+                bump in consumption of Straight Bourbon Whiskies and Spiced Rum in Linn and Johnson 
+                counties.
                 """)
     
-    st.subheader("Liquor Type Gross Profits by County")
-    
+    st.subheader("Liquor Type Gross Profit by County")
     liquor_options = ['All'] + sorted(df_county['liquor_type'].unique().tolist())
     selected_liquor = st.selectbox("Choose Liquor Type", liquor_options)
     map_gross_profit_choropleth(
@@ -45,40 +44,50 @@ with tab1:
         url="https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json",
         liquor_type=selected_liquor
     )
+
+with tab2:
+    st.markdown("""
+                - American Vodkas generate the highest gross profit, followed by different 
+                varieties of Whisky. Other popular liquor types include 100% Agave Tequila and 
+                Spiced Rum.
+                - Overall, Whiskies tend to be the most popular liquor type.
+                """)
     
-    st.subheader("State-Level Liquor Preferences")
+    st.subheader("Aggregate Gross Profit vs Liquor Type")
     liquor_type_plot(df_liquor,
                      x="liquor_type",
                      y="gross_profit",
                      x_title="Liquor type",
                      y_title="Aggregate yearly gross profit")
-    
 
-with tab2:
+with tab3:
     st.markdown("""
                 - Whiskies account for 20-30% of profits across all counties, while Vodka represents between 10-20%.
                 - Price range does not appear to be correlated with increased gross profits within different counties.
                 - Lower population counties tend to prefer Whisky and Vodka products.
                 """)  
     
-    st.subheader("County-Level")
-    counties1 = st.multiselect(
-        "Choose counties to display", 
-        options=df_county['county'].unique(), 
-        default=[c for c in default_counties if c in df_county['county'].unique()],
-        key="chart_a_counties")
-    liquor_type_plot(df_county, x="liquor_type", y="gross_profit", counties=counties1, color="price_range",
-                    title="Price vs Profit by County", x_title="Liquor Type", y_title="Gross Profit")
+    st.subheader("Yearly Gross Profit by Liquor Type")
+    counties1 = st.multiselect("Choose counties to display", 
+                               options=df_county['county'].unique(), 
+                               default=[c for c in default_counties if c in df_county['county'].unique()],
+                               key="chart_a_counties")
+    liquor_type_plot(df_county, x="liquor_type", y="gross_profit", 
+                     counties=counties1, color="price_range",
+                     x_title="Liquor type", 
+                     y_title="Yearly gross profit by liquor type")
 
-
-    st.subheader("Liquor Bottle Sales and Profits by County")
-    st.markdown('Note: all liquor categories less than one percent are aggregated into the other category.')
+    st.subheader("Liquor Sales and Profit Distribution")
+    st.markdown('''
+                Note: all liquor categories less than one percent are aggregated into the other 
+                category.
+                ''')
     county = st.selectbox("Select county", df_county['county'].unique())
     plot_sales_profit_pie_by_county(df_county, county)
 
-with tab3:
+with tab4:
     st.markdown("""
-                - The majority of products are in the medium price range (between $25-$70).
+                - The majority of products are in the medium price range (between \\$25-\\$70).
                 - Price per liter does not have a positive correlation with gross profits. In fact, depending on the county it is slightly to significantly negative.
                 - However, when comparing annual income and gross profits, there is a stronger positive relationship when using medium and expensive liquors compared to cheap liquors.
                 """)
@@ -93,17 +102,17 @@ with tab3:
         default=[c for c in default_counties if c in df_county['county'].unique()], 
         key="chart_b_counties"
     )
-    liquor_type_plot(df_county, x="price_per_liter", y="gross_profit", counties=counties2, color="price_range",
-                    title="Price vs Profit by County", x_title="Price per Liter", y_title="Gross Profit")
+    liquor_type_plot(df_county,
+                     x="price_per_liter", 
+                     y="gross_profit", 
+                     counties=counties2, 
+                     color="price_range",
+                     x_title="Price per liter", 
+                     y_title="Yearly gross profit by price range")
     
-
     st.subheader("Comparing Price Brackets on Profit Across Incomes")
-
-    # Create two columns
     col1, col2 = st.columns(2)
-
     tiers = ["cheap", "medium", "expensive"]
-
     with col1:
         tier1 = st.selectbox("Choose tier for Plot 1", tiers, key="tier1")
         df1 = df_ungrouped[df_ungrouped["price_range"] == tier1]
@@ -113,8 +122,8 @@ with tab3:
             y="gross_profit",
             color="county",
             title=f"{tier1.capitalize()} Tier: Income vs Gross Profit",
-            x_title="Annual Income",
-            y_title="Gross Profit",
+            x_title="Average annual income",
+            y_title="Aggregate gross profit by county",
             trendline="ols"
         )
         county_population_plot(
@@ -122,11 +131,10 @@ with tab3:
             x="annual_income",
             y="gross_profit",
             title=f"{tier1.capitalize()} Tier: Income vs Gross Profit",
-            x_title="Annual Income",
-            y_title="Gross Profit",
+            x_title="Average annual income",
+            y_title="Aggregate gross profit by county",
             trendline="ols"
         )
-
     with col2:
         tier2 = st.selectbox("Choose tier for Plot 2", tiers, key="tier2", index=2)
         df2 = df_ungrouped[df_ungrouped["price_range"] == tier2]
@@ -136,8 +144,8 @@ with tab3:
             y="gross_profit",
             color="county",
             title=f"{tier2.capitalize()} Tier: Income vs Gross Profit",
-            x_title="Annual Income",
-            y_title="Gross Profit",
+            x_title="Average annual income",
+            y_title="Aggregate gross profit by county",
             trendline="ols"
         )
         county_population_plot(
@@ -145,7 +153,7 @@ with tab3:
             x="annual_income",
             y="gross_profit",
             title=f"{tier1.capitalize()} Tier: Income vs Gross Profit",
-            x_title="Annual Income",
-            y_title="Gross Profit",
+            x_title="Average annual income",
+            y_title="Aggregate gross profit by county",
             trendline="ols"
         )

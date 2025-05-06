@@ -66,7 +66,7 @@ with tab2:
                 correlation with gross profit per capita.
                 """)
 
-    st.subheader("Gas Sales vs. Gross Profit by County")
+    st.subheader("Gas Sales vs Gross Profit by County")
     county_population_plot(
         df_county,
         x="gas_sales",
@@ -85,7 +85,7 @@ with tab2:
         trendline="ols"        # optional: adds a regression line
     )
 
-    st.subheader("Gas Sales per Capita vs. Gross Profit per Capita by County")
+    st.subheader("Gas Sales per Capita vs Gross Profit per Capita by County")
     county_population_plot( 
         df_county,
         x="gas_to_pop",

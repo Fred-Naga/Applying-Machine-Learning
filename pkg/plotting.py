@@ -1,6 +1,7 @@
 import streamlit as st
 import plotly.express as px
 
+@st.cache_resource
 def county_population_plot(df, x, y, 
                            color=None, trendline=None,
                            title="", x_title="", y_title=""):
@@ -16,6 +17,7 @@ def county_population_plot(df, x, y,
     fig.update_layout(showlegend=False, height=500)
     st.plotly_chart(fig, use_container_width=True)
 
+@st.cache_resource
 def city_population_plot(df, x, y, color=None, trendline=None,
                          title="", x_title="", y_title=""):
     fig = px.scatter(
@@ -29,7 +31,8 @@ def city_population_plot(df, x, y, color=None, trendline=None,
     )
     fig.update_layout(showlegend=False, height=500)
     st.plotly_chart(fig, use_container_width=True)
-    
+
+@st.cache_resource
 def income_histogram_plot(df, bins=30):
 
     fig = px.histogram(
@@ -37,13 +40,14 @@ def income_histogram_plot(df, bins=30):
         x="annual_income",
         nbins=bins,
         title="",
-        labels={"annual_income": "Annual Income", "count": "Number of Counties"}
+        labels={"annual_income": "Average annual income", 
+                "count": "Number of Counties"}
     )
     fig.update_layout(height=400)
     st.plotly_chart(fig, use_container_width=True)    
     
 
-@st.cache_data
+@st.cache_resource
 def plot_price_range_histogram(df):
 
     fig = px.histogram(
@@ -57,7 +61,7 @@ def plot_price_range_histogram(df):
     fig.update_layout(showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
-@st.cache_data
+@st.cache_resource
 def month_plot(df, x, y, color=None, title="", x_title="", y_title=""):
     fig = px.line(
         df,
@@ -94,7 +98,7 @@ def county_month_line(df, x, y,
     fig.update_layout(showlegend=False, height=500)
     st.plotly_chart(fig, use_container_width=True, key=key or f"{x}_{y}_line_chart")
 
-@st.cache_data 
+@st.cache_resource
 def county_month_plot(df, x, y, 
                       color=None, trendline=None,
                       title="", x_title="", y_title=""):
@@ -110,6 +114,7 @@ def county_month_plot(df, x, y,
     fig.update_layout(showlegend=False, height=500)
     st.plotly_chart(fig, use_container_width=True)
 
+@st.cache_resource
 def liquor_type_plot(df, x, y, counties=None, color=None, trendline=None, 
                      title="", x_title="", y_title=""):
     
@@ -135,6 +140,7 @@ def liquor_type_plot(df, x, y, counties=None, color=None, trendline=None,
     )
     st.plotly_chart(fig, use_container_width=True)
 
+@st.cache_resource
 def store_type_plot(df, x, y, 
                       color=None, trendline=None,
                       title="", x_title="", y_title=""):
@@ -151,7 +157,7 @@ def store_type_plot(df, x, y,
                       xaxis=dict(tickangle=-45))
     st.plotly_chart(fig, use_container_width=True)
     
-@st.cache_data
+@st.cache_resource
 def plot_income_distribution_by_county(df, key=None):
     """
     Creates a 100% stacked bar chart of household income distribution by county,
@@ -192,7 +198,7 @@ def plot_income_distribution_by_county(df, key=None):
     st.plotly_chart(fig, use_container_width=True, key=key or 'income_distribution_by_county_all')
     
     
-@st.cache_data
+@st.cache_resource
 def plot_income_heatmap(df, key=None):
     """
     Plots a heatmap of household income distribution by county.
@@ -233,8 +239,7 @@ def plot_income_heatmap(df, key=None):
 
     st.plotly_chart(fig, use_container_width=True, key=key or 'income_distribution_heatmap')
 
-
-@st.cache_data
+@st.cache_resource
 def plot_income_pie_by_county(df, county_selected, key=None):
     """
     Displays a pie chart for a selected county's household income bracket distribution.
@@ -263,7 +268,7 @@ def plot_income_pie_by_county(df, county_selected, key=None):
     fig = px.pie(df_pie, names='income_bracket', values='households', title=f"Income Distribution: {county_selected.title()}")
     st.plotly_chart(fig, use_container_width=True, key=key or f"income_pie_{county_selected}")
 
-@st.cache_data
+@st.cache_resource
 def plot_sales_profit_pie_by_county(df, county_selected, key=None):
     """
     Displays side-by-side pie charts for a selected county's liquor sales and gross-profit distributions by liquor type,
@@ -321,7 +326,7 @@ def plot_sales_profit_pie_by_county(df, county_selected, key=None):
         )
         st.plotly_chart(fig_profit, use_container_width=True, key=(key or '') + f"_profit_pie_{county_selected}")
 
-@st.cache_data
+@st.cache_resource
 def plot_sales_profit_pie_by_store_type(df, key=None):
     """
     Displays side-by-side pie charts of bottles sold and gross profit by store type (`category`).
@@ -348,7 +353,7 @@ def plot_sales_profit_pie_by_store_type(df, key=None):
         )
         st.plotly_chart(fig2, use_container_width=True, key=(key or '') + 'profit_pie_store')
         
-@st.cache_data
+@st.cache_resource
 def plot_store_type_profit_by_county(df, counties=None, key=None):
     """
     Stacked bar chart showing gross profit by county and store type.
@@ -374,7 +379,7 @@ def plot_store_type_profit_by_county(df, counties=None, key=None):
     fig.update_layout(xaxis_tickangle=-45, height=500)
     st.plotly_chart(fig, use_container_width=True, key=key or "store_type_stacked_bar")
     
-@st.cache_data
+@st.cache_resource
 def plot_total_profit_by_store_type(df, key=None):
     df_grouped = (
         df.groupby('category', as_index=False)
@@ -385,7 +390,7 @@ def plot_total_profit_by_store_type(df, key=None):
         df_grouped,
         x='category',
         y='gross_profit',
-        labels={'category': 'Store Type', 'gross_profit': 'Average monthly Gross Profit'},
+        labels={'category': 'Store type', 'gross_profit': 'Average monthly gross profit'},
         title=''
     )
     fig.update_layout(xaxis_tickangle=-45, height=500)

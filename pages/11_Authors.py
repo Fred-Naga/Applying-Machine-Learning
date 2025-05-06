@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Authors", page_icon="👥")
-st.image('picture/authors.png', use_container_width=True)
+st.image('picture/authors.jpg', use_container_width=True)
 
 col1, col2 = st.columns(2)
 

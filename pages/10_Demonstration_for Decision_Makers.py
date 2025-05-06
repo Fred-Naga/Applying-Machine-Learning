@@ -8,7 +8,7 @@ st.header('🥂 Demonstration for Decision Makers',divider=True)
 st.markdown('''
             - This is a demonstration of the prediction model (algorithm) that we created 
             for decision makers.
-            - The model predicts the gross profit of a store selling liquors in Iowa. 
+            - The model predicts the monthly gross profit of a store selling liquors in Iowa. 
             - [You can refer to the mean and maximum liters of each liquor type by store 
             and county here.](https://github.com/Fred-Naga/Applying-Machine-Learning/blob/main/table/liters_by_store.csv)
             To improve the accuracy of predictions, it is recommended not to exceed the 

@@ -57,8 +57,8 @@ with tab2:
                 - The Ridge model may not generalize well to unseen data, and alternative 
                 models should be explored.
                 """)
-    if st.button("Algorithm: Random Forest"):
-        st.switch_page("pages/9_Algorithm:_Random_Forest.py")
+    if st.button("Algorithm - Random Forest"):
+        st.switch_page("pages/9_Algorithm_-_Random_Forest.py")
 
     st.subheader("Actual vs Projected Monthly Gross Profit")
 

@@ -57,7 +57,7 @@ st.markdown('''
     3. `l_(liquor type)`: [Liquor liters by types](https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data). Liters for sold liquor types, such as whiskey liqueur, Canadian whisky, and aged rum.
     4. `c_(county)`: Counties. Since we are considering only stores in Iowa, this variable alone is used to capture geographical characteristics when creating the algorithm. However, we conduct exploratory data analysis using the following features to capture the effects of each county-level characteristic on gross profit.
         - [Adult population age brackets by gender](https://catalog.data.gov/dataset/iowa-population-18-years-and-over-by-sex-age-and-educational-attainment-acs-5-year-estimat?): This variable includes adult age categorized into the following buckets: (18–24, 25–34, 35–44, 45–64, and 65+) at the county level, separating male and female populations.
-        - [Annual income](https://data.census.gov/table?q=B19001&g=040XX00US19$0500000_860XX00US78940): The ACS 5-Year estimates divide household incomes into 16 brackets spanning from under $10,000 up to $200,000 or more.
+        - [Annual income](https://data.census.gov/table?q=B19001&g=040XX00US19$0500000_860XX00US78940): The ACS 5-Year estimates divide household incomes into 16 brackets spanning from under \\$10,000 up to \\$200,000 or more.
         - [Fuel sales](https://data.iowa.gov/Sales-Distribution/Iowa-Motor-Fuel-Sales-by-County-and-Year/hbwp-wys3/about_data) (Used as an interaction term when store type is gas station): Total motor fuel sold during the 2024 calendar year, measured in gallons.
         - [Excessive drinking percentage](https://www.countyhealthrankings.org/health-data/community-conditions/health-infrastructure/health-promotion-and-harm-reduction/excessive-drinking?state=19&tab=1&year=2025): Percentage of adults reporting binge or heavy drinking in the past 30 days. 
     ''')
@@ -71,23 +71,23 @@ st.markdown('''
 st.markdown("<u><b>Explanatory Data Analysis (EDA)</b></u>", unsafe_allow_html=True)
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    if st.button("EDA: Month"):
-        st.switch_page("pages/1_EDA_Month.py")
-    if st.button("EDA: Income"):
-        st.switch_page("pages/5_EDA_Income.py")
+    if st.button("EDA - Month"):
+        st.switch_page("pages/1_EDA_-_Month.py")
+    if st.button("EDA - Income"):
+        st.switch_page("pages/5_EDA_-_Income.py")
 with col2:
-    if st.button("EDA: Store Types"):
-        st.switch_page("pages/2_EDA_Store_Types.py")
-    if st.button("EDA: Fuel Sales"):
-        st.switch_page("pages/6_EDA_Fuel_Sales.py")
+    if st.button("EDA - Store Types"):
+        st.switch_page("pages/2_EDA_-_Store_Types.py")
+    if st.button("EDA - Fuel Sales"):
+        st.switch_page("pages/6_EDA_-_Fuel_Sales.py")
 with col3:
-    if st.button("EDA: Liquor Types"):
-        st.switch_page("pages/3_EDA_Liquor_Types.py")
-    if st.button("EDA: Excessive_Drinking"):
-        st.switch_page("pages/7_EDA_Excessive_Drinking.py")
+    if st.button("EDA - Liquor Types"):
+        st.switch_page("pages/3_EDA_-_Liquor_Types.py")
+    if st.button("EDA - Excessive_Drinking"):
+        st.switch_page("pages/7_EDA_-_Excessive_Drinking.py")
 with col4:
-    if st.button("EDA: Population"):
-        st.switch_page("pages/4_EDA_Population.py")
+    if st.button("EDA - Population"):
+        st.switch_page("pages/4_EDA_-_Population.py")
 
 st.header('🍶 Strategy',divider=True)
 st.markdown('''
@@ -102,11 +102,11 @@ st.markdown('''
             ''')
 col1, col2, col3 = st.columns(3)
 with col1:
-    if st.button("Algorithm: Ridge Regression"):
-        st.switch_page("pages/8_Algorithm_Ridge_Regression.py")
+    if st.button("Algorithm - Ridge Regression"):
+        st.switch_page("pages/8_Algorithm_-_Ridge_Regression.py")
 with col2:
-    if st.button("Algorithm: Random Forest"):
-        st.switch_page("pages/9_Algorithm_Random_Forest.py")
+    if st.button("Algorithm - Random Forest"):
+        st.switch_page("pages/9_Algorithm_-_Random_Forest.py")
 with col3:
     if st.button("Demonstration for Decision Makers"):
         st.switch_page("pages/10_Demonstration_for Decision_Makers.py")

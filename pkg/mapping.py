@@ -223,7 +223,7 @@ def drinking_map(df, url):
 
     st.plotly_chart(fig, use_container_width=True)
 
-@st.cache_data
+@st.cache_resource
 def map_gross_profit_choropleth(df, url, liquor_type='All', key=None):
     """
     Creates a county-level choropleth map of gross profit,
@@ -269,7 +269,8 @@ def map_gross_profit_choropleth(df, url, liquor_type='All', key=None):
     fig.update_geos(fitbounds='locations', visible=False)
     fig.update_layout(margin=dict(r=0,t=0,l=0,b=0), height=400)
     st.plotly_chart(fig, use_container_width=True, key=key or f"gross_profit_map_{liquor_type}")
-    
+
+@st.cache_resource
 def map_store_count_choropleth(df, url, key=None):
     """
     Creates a county-level choropleth map showing the number of liquor stores per county.

@@ -60,7 +60,7 @@ with tab2:
                 excessive drinking percentage and gross profits.
                 """)
 
-    st.subheader("Excessive Drinking (%) vs. Gross Profit by County")
+    st.subheader("Excessive Drinking (%) vs Gross Profit by County")
     county_population_plot(
         df_county,
         x="excessive_drinking",
