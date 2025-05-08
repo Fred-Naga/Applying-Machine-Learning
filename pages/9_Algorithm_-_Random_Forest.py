@@ -59,7 +59,7 @@ with tab2:
                 model (8,395.12), indicating significantly improved accuracy.
                 - This level of precision makes the model suitable for real-world applications, 
                 such as supporting decision makers in inventory planning or revenue forecasting.
-                - We applied this model in a demonstration to illustrate its potential for predicting 
+                - We applied this model in an app to demonstrate its potential for predicting 
                 monthly item-level gross profit by store.
                 """)
 

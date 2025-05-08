@@ -108,8 +108,8 @@ with col2:
     if st.button("Algorithm - Random Forest"):
         st.switch_page("pages/9_Algorithm_-_Random_Forest.py")
 with col3:
-    if st.button("Demonstration for Decision Makers"):
-        st.switch_page("pages/10_Demonstration_for Decision_Makers.py")
+    if st.button("App for Decision Makers"):
+        st.switch_page("pages/10_App_for Decision_Makers.py")
 st.image("picture/algorithm.png",
          caption="Image of the algorithm",
          use_container_width=True)
